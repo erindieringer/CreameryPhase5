@@ -1,0 +1,12 @@
+<h3>Job Details</h3>
+<p>
+	<b>Name: </b> <%= @job.name %>
+</p>
+<p>
+	<% if !@job.description.nil? %>
+		<b>Description: </b> <%= @job.description %>
+	<%end%>
+</p>
+<p>
+	<b>Active: </b> <%= @job.active ? "Yes" : "No" %>
+</p>
