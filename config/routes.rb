@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :stores
   resources :employees
   resources :assignments
+  resources :shifts
+  resources :flavors
+  resources :jobs
 
   # Semi-static page routes
   get 'home' => 'home#home', as: :home
