@@ -13,6 +13,7 @@
           <th>End Date</th>
         <% end %>
         <th>&nbsp;</th>
+        <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -30,6 +31,12 @@
               &nbsp;Edit&nbsp;
             <% end %>
           </td>
+          <td>
+            <%= link_to(assignment_path(assignment), class: 'button tiny radius') do %>
+              &nbsp;View&nbsp;
+            <% end %>
+          </td>
+
         </tr>
       <% end %>
     </tbody>

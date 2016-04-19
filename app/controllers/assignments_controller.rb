@@ -1,16 +1,15 @@
 class AssignmentsController < ApplicationController
-  before_action :set_assignment, only: [:edit, :update, :destroy]
-  # before_action :set_assignment, only: [:show, :edit, :update, :destroy]
+   before_action :set_assignment, only: [:show, :edit, :update, :destroy]
 
   def index
     @current_assignments = Assignment.current.by_store.by_employee.chronological.paginate(page: params[:page]).per_page(15)
     @past_assignments = Assignment.past.by_employee.by_store.paginate(page: params[:page]).per_page(15)  
   end
 
-  # def show
-  #   # get the shift history for this assignment (later; empty now)
-  #   @shifts = Array.new
-  # end
+   def show
+     @shifts = @assignment.shifts.chronological.paginate(page: params[:page]).per_page(10) 
+    
+   end
 
   def new
     @assignment = Assignment.new
