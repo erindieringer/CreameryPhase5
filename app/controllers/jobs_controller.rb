@@ -26,7 +26,7 @@ class JobsController < ApplicationController
 	end
 
 	def update
-		if Job.update(job_params)
+		if @job.update(job_params)
 			redirect_to job_path(@job), notice: "Sucessfully updated #{@job.name}."
 		else
 			render action: 'edit'
@@ -44,7 +44,7 @@ class JobsController < ApplicationController
 	end
 
 	def job_params
-		params.require(:job).permit(:name, :description, :active)
+		params.require(:job).permit(:name, :active)
 	end
 
 end
