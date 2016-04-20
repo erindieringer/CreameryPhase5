@@ -1,4 +1,4 @@
-<% if @jobs.empty? %>
+<% if @jobs.nil? %>
   <p><em>There are no assigned jobs at this time</em></p>
 <% else %>
 <h3>Jobs for Shift</h3>
@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @jobs.each do |jobs| %>
+    <% @jobs.each do |job| %>
       <tr>
         <td><%= link_to job.name, job_path(job) %></td>
       </tr>

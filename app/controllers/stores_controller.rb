@@ -9,7 +9,15 @@ class StoresController < ApplicationController
   def show
     @current_assignments = @store.assignments.current.by_employee.paginate(page: params[:page]).per_page(8)
     @current_flavors = @store.store_flavors.all.paginate(page: params[:page]).per_page(10)
-    @upcoming_shifts = @store.assignments.current.shifts.for_next_days(7).paginate(page: params[:page]).per_page(10)
+    @shifts = [] 
+    @current_assignments.each do |assignment| 
+      unless assignment.shifts.for_next_days(7).nil? 
+        assignment.shifts.for_next_days(7).each do |shift| 
+          @shifts.push(shift) 
+        end 
+      end 
+    end
+    #@shifts = @shifts.paginate(page: params[:page]).per_page(8)
   end
 
   def new
