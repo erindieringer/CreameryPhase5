@@ -5,7 +5,10 @@
   </div>
   <div class="small-5 columns">
     <%= render partial: "assigned_employees" unless @current_assignments.empty?%>
+    <%= render partial: "current_flavors" %>
+    <%= render partial: "upcoming_shifts" %>
   </div>
+
 </div>
 
 
