@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   # Validations
   validates_uniqueness_of :email, case_sensitive: false
   validates_format_of :email, :with => /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/i, :message => "is not a valid format"
-  validate :employee_is_active_in_system
+  validate :employee_is_active_in_system, on: :update
   
   ROLES = [['Employee', 'employee', :employee],['Manager', 'manager', :manager],['Administrator', 'admin', :admin]]
 

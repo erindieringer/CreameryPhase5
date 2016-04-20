@@ -10,7 +10,7 @@ class EmployeesController < ApplicationController
     # get the assignment history for this employee
     @assignments = @employee.assignments.chronological.paginate(page: params[:page]).per_page(5)
     # get upcoming shifts for this employee (later)
-    @shifts = @employee.current_assignment.shifts.upcoming.for_next_days(14).chronological.paginate(page: params[:page]).per_page(5)
+    @shifts = @employee.current_assignment.shifts.upcoming.for_next_days(14).chronological.paginate(page: params[:page]).per_page(5) unless @employee.current_assignment.nil?
     @user = @employee.user  
   end
 
@@ -51,7 +51,7 @@ class EmployeesController < ApplicationController
   end
 
   def employee_params
-    params.require(:employee).permit(:first_name, :last_name, :ssn, :date_of_birth, :role, :phone, :active, users_attributes: [:email, :password, :password_confirmation])
+    params.require(:employee).permit(:first_name, :last_name, :ssn, :date_of_birth, :role, :phone, :active, user_attributes: [:email, :password, :password_confirmation, :_destroy])
   end
 
 end

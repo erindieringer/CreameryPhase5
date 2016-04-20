@@ -3,10 +3,6 @@
     <fieldset>
           <legend><%= controller.action_name.capitalize %> Employee</legend>
           <%= render :partial => "employee_form", :locals => { :f => employee_forms } %>
-
-
-
-      <legend>User for the Employee</legend>
           <div id="employee_user">
             <%= employee_forms.simple_fields_for :user do |user_forms| %>
                 <%= render :partial => "user_form", :locals => { :f => user_forms } %>
@@ -15,8 +11,6 @@
               <br /><%= employee_forms.link_to_add("Add User", :user, :class => 'button tiny') %>
             </p>
           </div> 
-
-
 
     <div class="form-actions">
       <%= employee_forms.submit nil, :class => 'button radius' %>

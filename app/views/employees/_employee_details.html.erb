@@ -24,3 +24,15 @@
 <p>
   <b>Active:</b> <%= @employee.active ? "Yes" : "No" %>
 </p>
+
+<p>
+	<b>User in System:</b> <%= @employee.user ? "Yes" : "No" %>
+</p>
+
+<% if @employee.user %>
+	
+	<p>
+  		<b>Email:</b> <%= @employee.user.email %>
+	</p>
+
+<%end%>
