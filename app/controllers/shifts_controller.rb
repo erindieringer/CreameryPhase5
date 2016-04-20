@@ -26,7 +26,7 @@ class ShiftsController < ApplicationController
 	def set_shift
 	end
 
-	def flavor_shift
+	def shift_params
 	end
 
 end
