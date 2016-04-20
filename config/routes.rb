@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :shifts
   resources :flavors
   resources :jobs
+  resources :users
 
   # Semi-static page routes
   get 'home' => 'home#home', as: :home
