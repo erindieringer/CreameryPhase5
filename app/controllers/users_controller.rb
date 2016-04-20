@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 	end
 
 	def edit
+		@user = current_user
 	end
 
 	def create
@@ -24,16 +25,12 @@ class UsersController < ApplicationController
 	end
 
 	def update
-		if @employee.update(employee_params)
+		@user = current_user
+		if @user.update(user_params)
       		redirect_to employee_path, notice: "Successfully updated #{@user}."
     	else
       		render action: 'edit'
     	end
-	end
-
-	def destroy
-		@user.destroy
-		redirect_to employees_path, notice: "Successfully removed #{@user} from the AMC system."
 	end
 
 	private
