@@ -26,7 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-gem "nested_form"
+gem 'nested_form'
 
 # Other gems used
 gem 'time_date_helpers'
