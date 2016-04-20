@@ -7,7 +7,8 @@ class ShiftsController < ApplicationController
 	end
 
 	def show
-		@current_assignment = @shift.assignment
+		@assignment = @shift.assignment
+		@jobs = @shift.shift_jobs
 	end
 
 	def new

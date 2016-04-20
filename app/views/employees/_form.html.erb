@@ -3,6 +3,7 @@
     <fieldset>
           <legend><%= controller.action_name.capitalize %> Employee</legend>
           <%= render :partial => "employee_form", :locals => { :f => employee_forms } %>
+          
           <div id="employee_user">
             <%= employee_forms.simple_fields_for :user do |user_forms| %>
                 <%= render :partial => "user_form", :locals => { :f => user_forms } %>

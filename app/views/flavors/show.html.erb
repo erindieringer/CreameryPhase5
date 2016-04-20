@@ -1,0 +1,5 @@
+<% unless @store_flavors.nil? %>
+	<%= render 'current_stores' %>
+<% else %>
+	<b><%= @flavor.name %> not currently assigned
+<%end%>

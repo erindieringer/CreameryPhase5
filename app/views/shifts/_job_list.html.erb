@@ -1,0 +1,20 @@
+<% if @jobs.empty? %>
+  <p><em>There are no assigned jobs at this time</em></p>
+<% else %>
+<h3>Jobs for Shift</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @jobs.each do |jobs| %>
+      <tr>
+        <td><%= link_to job.name, job_path(job) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @jobs, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+<%end%>

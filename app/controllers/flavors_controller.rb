@@ -7,6 +7,7 @@ class FlavorsController < ApplicationController
 	end
 
 	def show
+		@store_flavors = @flavor.store_flavors
 	end
 
 	def new
