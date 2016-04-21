@@ -16,19 +16,35 @@ class StoreFlavorsController < ApplicationController
 
 	def create
 		@store_flavor = StoreFlavor.new(store_flavor_params)
-		if @store_flavor.save
-      		redirect_to store_flavor_path, notice: "Thank you for signing up!"
-      	else
-      		render action: 'new'
-      	end
+		respond_to do |format|	
+			if @store_flavor.save
+	      		format.html {redirect_to store_flavor_path, notice: "Thank you for signing up!"}
+	      		format.json { render action: 'show', status: :created, location: @store_flavor }
+	      	else
+	      		format.html {render action: 'new'}
+	      		format.json { render json: @store_flavors.errors, status: :unprocessable_entity }
+	      	end
+	    end
 	end
 
 	def update
-		if @store_flavor.update(store_flavor_params)
-      		redirect_to store_flavor_path, notice: "Successfully updated #{@store_flavor}."
-    	else
-      		render action: 'edit'
-    	end
+		respond_to do |format|
+			if @store_flavor.update(store_flavor_params)
+	      		format.html {redirect_to store_flavor_path, notice: "Successfully updated #{@store_flavor}."}
+	      		format.json { head :no_content }
+	    	else
+	      		format.html {render action: 'edit'}
+	      		format.json { render json: @store_flavors.errors, status: :unprocessable_entity }
+	    	end
+	    end
+	end
+
+	def destroy
+		@store_flavor.destroy
+		respond_to do |format|
+			format.html {redirect_to store_flavors_path, notice: "Sucessfully destroyed from the AMC system."}
+			format.json { head :no_content }
+		end
 	end
 
 	private

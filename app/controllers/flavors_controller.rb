@@ -19,24 +19,35 @@ class FlavorsController < ApplicationController
 
 	def create
 		@flavor = Flavor.new(flavor_params)
-		if @flavor.save
-			redirect_to flavor_path(@flavor), notice: "Sucessfully created #{@flavor.name}."
-		else
-			render action: 'new'
+		respond_to do |format|
+			if @flavor.save
+				format.html {redirect_to flavor_path(@flavor), notice: "Sucessfully created #{@flavor.name}."}
+				format.json { render action: 'show', status: :created, location: @flavor }
+			else
+				format.html {render action: 'new'}
+				format.json { render json: @flavors.errors, status: :unprocessable_entity }
+			end
 		end
 	end
 
 	def update
-		if @flavor.update(flavor_params)
-			redirect_to flavor_path(@flavor), notice: "Sucessfully updated #{@flavor.name}."
-		else
-			render action: 'edit'
+		respond_to do |format|	
+			if @flavor.update(flavor_params)
+				format.html {redirect_to flavor_path(@flavor), notice: "Sucessfully updated #{@flavor.name}."}
+				format.json { head :no_content }
+			else
+				format.html {render action: 'edit'}
+				format.json { render json: @flavors.errors, status: :unprocessable_entity }
+			end
 		end
 	end
 
 	def destroy
 		@flavor.destroy
-		redirect_to flavors_path, notice: "Sucessfully destroyed #{@flavor.name} from the AMC system."
+		respond_to do |format|
+			format.html {redirect_to flavors_path, notice: "Sucessfully destroyed #{@flavor.name} from the AMC system."}
+			format.json { head :no_content }
+		end
 	end
 
 	private

@@ -29,25 +29,35 @@ class StoresController < ApplicationController
 
   def create
     @store = Store.new(store_params)
-    
-    if @store.save
-      redirect_to store_path(@store), notice: "Successfully created #{@store.name}."
-    else
-      render action: 'new'
+    respond_to do |format|
+      if @store.save
+        format.html {redirect_to store_path(@store), notice: "Successfully created #{@store.name}."}
+        format.json { render action: 'show', status: :created, location: @store}
+      else
+        format.html {render action: 'new'}
+        format.json { render json: @stores.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def update
-    if @store.update(store_params)
-      redirect_to store_path(@store), notice: "Successfully updated #{@store.name}."
-    else
-      render action: 'edit'
+    respond_to do |format| 
+      if @store.update(store_params)
+        format.html {redirect_to store_path(@store), notice: "Successfully updated #{@store.name}."}
+        format.json { head :no_content }
+      else
+        format.html {render action: 'edit'}
+        format.json { render json: @stores.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def destroy
     @store.destroy
-    redirect_to stores_path, notice: "Successfully removed #{@store.name} from the AMC system."
+    respond_to do |format|  
+      format.html {redirect_to stores_path, notice: "Successfully removed #{@store.name} from the AMC system."}
+      format.json { head :no_content }
+    end
   end
 
   private
