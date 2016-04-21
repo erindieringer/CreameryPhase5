@@ -1,21 +1,22 @@
-<h3>Current Employees</h3>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th class="centered">Pay Level</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @current_assignments.each do |assignment| %>
+<%unless !@store.active %> 
+  <h3>Current Employees</h3>
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= link_to assignment.employee.name, employee_path(assignment.employee) %></td>
-        <td class="centered"><%= assignment.pay_level %></td>
+        <th>Name</th>
+        <th class="centered">Pay Level</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= will_paginate @current_assignments, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+    </thead>
+    <tbody>
+      <% @current_assignments.each do |assignment| %>
+        <tr>
+          <td><%= link_to assignment.employee.name, employee_path(assignment.employee) %></td>
+          <td class="centered"><%= assignment.pay_level %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @current_assignments, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 
-
+<%end%>
 

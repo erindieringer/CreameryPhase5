@@ -1,10 +1,12 @@
-<% unless @current_flavors.empty? %>
-  <div class="panel callout radius">
-    <h3>Current Flavors for <%= @store.name %> </h3>
-    <ul>
-      <% @current_flavors.each do |flavor| %>
-        <li><%= link_to flavor.name, flavor_path(flavor) %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+ <%unless !@store.active %>
+	<% unless @current_flavors.empty? %>
+	  <div class="panel callout radius">
+	    <h3>Current Flavors for <%= @store.name %> </h3>
+	    <ul>
+	      <% @current_flavors.each do |flavor| %>
+	        <li><%= link_to flavor.name, flavor_path(flavor) %></li>
+	      <% end %>
+	    </ul>
+	  </div>
+	<% end %>
+<%end%>
