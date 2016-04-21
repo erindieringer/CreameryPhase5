@@ -10,6 +10,7 @@
         <th>Currently Assigned</th>
         <th>Role</th>
         <th>&nbsp;</th>
+        <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -20,9 +21,11 @@
           <td><%= link_to employee.current_assignment.store.name, store_path(employee.current_assignment.store) unless employee.current_assignment.nil? %></td>
           <td><%= employee.role.capitalize %></td>
           <td>
-            <%= link_to(edit_employee_path(employee), class: 'button tiny radius warning') do %>
-              &nbsp;Edit&nbsp;
-            <% end %>
+            <%= link_to(image_tag("edit_dg.gif"), edit_employee_path(employee))  %>
+  
+          </td>
+          <td>
+              <%= link_to(image_tag("remove.png"), employee_path(employee), confirm: 'Are you sure you wish to delete this information?', method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' })  %>
           </td>
         </tr>
       <% end %>

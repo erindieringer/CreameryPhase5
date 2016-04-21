@@ -9,6 +9,7 @@
         <th width="225">Store Phone</th>
         <th width="125">Staff Count</th>
         <th width="75">&nbsp;</th>
+        <th width="75">&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -18,9 +19,11 @@
           <td><%= number_to_phone store.phone %></td>
           <td><%= store.assignments.current.count %></td>      
           <td>
-            <%= link_to(edit_store_path(store), class: 'button tiny radius warning') do %>
-              &nbsp;Edit&nbsp;
-            <% end %>
+            <%= link_to(image_tag("edit_dg.gif"), edit_store_path(store))  %>
+  
+          </td>
+          <td>
+              <%= link_to(image_tag("remove.png"), store_path(store), confirm: 'Are you sure you wish to delete this information?', method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' })  %>
           </td>
         </tr>
       <% end %>

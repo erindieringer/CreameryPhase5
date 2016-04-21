@@ -17,7 +17,7 @@ class StoreFlavorsController < ApplicationController
 	def create
 		@store_flavor = StoreFlavor.new(store_flavor_params)
 		if @store_flavor.save
-      		redirect_to store_flavor, notice: "Thank you for signing up!"
+      		redirect_to store_flavor_path, notice: "Thank you for signing up!"
       	else
       		render action: 'new'
       	end

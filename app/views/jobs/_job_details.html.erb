@@ -1,12 +1,20 @@
-<h3>Job Details</h3>
-<p>
-	<b>Name: </b> <%= @job.name %>
-</p>
-<p>
-	<% if !@job.description.nil? %>
-		<b>Description: </b> <%= @job.description %>
-	<%end%>
-</p>
-<p>
-	<b>Active: </b> <%= @job.active ? "Yes" : "No" %>
-</p>
+	<h3>Job Details</h3>
+<div id= "job_details"
+
+	<p>
+		<b>Name: </b> <%= @job.name %>
+	</p>
+	<p>
+		<% if !@job.description.nil? %>
+			<b>Description: </b> <%= @job.description %>
+		<%end%>
+	</p>
+	<p>
+		<b>Active: </b> <%= @job.active ? "Yes" : "No" %>
+	</p>
+
+	<%#= link_to(new_shift_job_path(job_id: @job.id), class: 'button tiny radius', remote: true) do %>
+  	Assign to Store
+	<%# end %>
+
+</div>

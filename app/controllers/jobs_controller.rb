@@ -7,6 +7,7 @@ class JobsController < ApplicationController
 	end
 
 	def show
+		@shift_jobs = @job.shift_jobs.to_a
 	end
 
 	def new
@@ -18,24 +19,35 @@ class JobsController < ApplicationController
 
 	def create
 		@job = Job.new(job_params)
-		if @job.save
-			redirect_to job_path(@job), notice: "Sucessfully created #{@job.name}."
-		else
-			render action: 'new'
+		respond_to do |format|
+			if @job.save
+				format.html {redirect_to job_path(@job), notice: "Sucessfully created #{@job.name}."}
+				format.json { render action: 'show', status: :created, location: @job }
+			else
+				format.html {render action: 'new'}
+				format.json { render json: @jobs.errors, status: :unprocessable_entity }
+			end
 		end
 	end
 
 	def update
-		if @job.update(job_params)
-			redirect_to job_path(@job), notice: "Sucessfully updated #{@job.name}."
-		else
-			render action: 'edit'
+		respond_to do |format|
+			if @job.update(job_params)
+				format.html {redirect_to job_path(@job), notice: "Sucessfully updated #{@job.name}."}
+				format.json { head :no_content }
+			else
+				format.html {render action: 'edit'}
+				format.json { render json: @jobs.errors, status: :unprocessable_entity }
+			end
 		end
 	end
 
 	def destroy
 		@job.destroy
-		redirect_to jobs_path, notice: "Sucessfully destroyed #{@job.name} from the AMC system."
+		respond_to do |format|
+			format.html {redirect_to jobs_path, notice: "Sucessfully destroyed #{@job.name} from the AMC system."}
+			format.json { head :no_content }
+		end
 	end
 
 	private

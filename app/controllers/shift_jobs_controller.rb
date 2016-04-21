@@ -16,20 +16,35 @@ class ShiftJobsController < ApplicationController
 
 	def create
 		@shift_job = ShiftJob.new(shift_job_params)
-		if @shift_job.save
-      		redirect_to employee_path, notice: "Thank you for signing up!"
-      	else
-      		render action: 'new'
-      	end
+		respond_to do |format|
+			if @shift_job.save
+	      		format.html {redirect_to employee_path, notice: "Thank you for signing up!"}
+	      		format.json { render action: 'show', status: :created, location: @shift_job }
+	      	else
+	      		format.html {render action: 'new'}
+	      		format.json { render json: @shift_jobs.errors, status: :unprocessable_entity }
+	      	end
+	    end
 	end
 
 	def update
-		if @shift_job.update(shift_job_params)
-      		redirect_to shift_job_path, notice: "Successfully updated #{@user}."
-    	else
-      		render action: 'edit'
-    	end
+		respond_to do |format|
+			if @shift_job.update(shift_job_params)
+	      		format.html {redirect_to shift_job_path, notice: "Successfully updated #{@user}."}
+	      		format.json { head :no_content }
+	    	else
+	      		format.html {render action: 'edit'}
+	      		format.json { render json: @shift_jobs.errors, status: :unprocessable_entity }
+	    	end
+	    end
 	end
+
+	def destroy
+		@shift_job.destroy
+		respond_to do |format|
+			format.html {redirect_to shift_jobs_path, notice: "Sucessfully destroyed from the AMC system."}
+			format.json { head :no_content }
+		end
 
 	private
 	def set_shift_job
