@@ -1,7 +1,6 @@
 <%= simple_form_for @shift_job, html: { :class => 'form-horizontal' }, remote: true do |f| %>
   
-  <%= f.input :store_id, label: "Store", collection: Store.active.all, input_html: {class: "avg"} %>
-  <!-- Note in this case that can't use @town; use params[:town_id] -->
+  <%= f.input :shift_id, label: "Shift", collection: Shift.all, input_html: {class: "avg"} %>
   <%= f.input :job_id, as: :hidden, input_html: { value: params[:job_id] } %>
 
   <p>&nbsp;</p>

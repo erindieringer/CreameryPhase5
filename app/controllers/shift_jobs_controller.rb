@@ -45,6 +45,7 @@ class ShiftJobsController < ApplicationController
 			format.html {redirect_to shift_jobs_path, notice: "Sucessfully destroyed from the AMC system."}
 			format.json { head :no_content }
 		end
+	end
 
 	private
 	def set_shift_job
