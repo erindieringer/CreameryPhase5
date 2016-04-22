@@ -1,20 +1,27 @@
-<% if @jobs.nil? %>
-  <p><em>There are no assigned jobs at this time</em></p>
-<% else %>
-<h3>Jobs for Shift</h3>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @jobs.each do |job| %>
+ <div id = "jobs_list">
+  <% if @jobs.nil? %>
+    <p><em>There are no assigned jobs at this time</em></p>
+  <% else %>
+  <h3>Jobs for Shift</h3>
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= link_to job.name, job_path(job) %></td>
+        <th>Name</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= will_paginate @jobs, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
-<%end%>
+    </thead>
+    <tbody>
+      <% @jobs.each do |job| %>
+        <tr>
+          <td><%= link_to job.name, job_path(job) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @jobs, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+  <%end%>
+
+  <%= link_to(new_shift_job_path(shift_id: @shift.id),id: 'new_shiftjob_link', class: 'button tiny radius', remote: true) do %>
+  Add New Job
+<% end %>
+
+</div>

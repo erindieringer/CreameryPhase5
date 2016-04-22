@@ -1,15 +1,7 @@
-<div id = "flavor_details"	>
-	<h3> <%= @flavor.name %> Details </h3>
-	<% unless @store_flavors.empty? %>
-		<%= render 'current_stores' %>
-	<% else %>
-		<p>
-		<em><%= @flavor.name %> not currently assigned to any stores</em>
-	</p>
-	<%end%>
-	
-	<%= link_to(new_store_flavor_path(flavor_id: @flavor.id), id: 'new_store_flavor_link', class: 'button tiny radius', remote: true) do %>
-	  Assign to New Store
-	<% end %>
+<div class="row">
+  <div class="small-10 columns">
+    <%= render partial: "flavor_details" %>
+  </div>
 
-</div>
+
+<%= render partial: "partials/object_options", locals: {model_name: "flavor", object: @flavor}  %>

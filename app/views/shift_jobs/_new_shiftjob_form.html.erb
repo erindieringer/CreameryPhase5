@@ -1,11 +1,11 @@
 <%= simple_form_for @shift_job, html: { :class => 'form-horizontal' }, remote: true do |f| %>
   
-  <%= f.input :shift_id, label: "Shift", collection: Shift.all, input_html: {class: "avg"} %>
-  <%= f.input :job_id, as: :hidden, input_html: { value: params[:job_id] } %>
+  <%= f.input :job_id, label: "Job", collection: Job.active.all, input_html: {class: "avg"} %>
+  <%= f.input :shift_id, as: :hidden, input_html: { value: params[:shift_id] } %>
 
-  <p>&nbsp;</p>
+  
   <div class="form-actions">
     <%= f.submit nil, class: 'button tiny radius' %>
-    <%= link_to 'Cancel', job_path(params[:job_id]), class: 'button tiny radius alert' %>
+    <%= link_to 'Cancel', shift_path(params[:shift_id]), class: 'button tiny radius alert' %>
   </div>
 <% end %>

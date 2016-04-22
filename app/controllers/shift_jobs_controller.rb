@@ -2,6 +2,7 @@ class ShiftJobsController < ApplicationController
 	before_action :set_shift_job, only: [:show, :edit, :update, :destroy]
 
 	def index
+		@shift_jobs = ShiftJob.to_a
 	end
 
 	def show
@@ -19,6 +20,8 @@ class ShiftJobsController < ApplicationController
 		respond_to do |format|
 			if @shift_job.save
 	      		format.html {redirect_to employee_path, notice: "Thank you for signing up!"}
+	      		@shift = @shift_job.shift
+	      		@shift_jobs = @shift.shift_jobs
 	      		format.json { render action: 'show', status: :created, location: @shift_job }
 	      	else
 	      		format.html {render action: 'new'}
