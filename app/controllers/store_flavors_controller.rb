@@ -5,6 +5,7 @@ class StoreFlavorsController < ApplicationController
 	end
 
 	def show
+		@store_flavors= StoreFlavor.all
 	end
 
 	def new
@@ -19,7 +20,6 @@ class StoreFlavorsController < ApplicationController
 		respond_to do |format|	
 			if @store_flavor.save
 	      		format.html {redirect_to store_flavor_path, notice: "Thank you for signing up!"}
-	      		@store = @store_flavor.store
 	      		format.json { render action: 'show', status: :created, location: @store_flavor }
 	      	else
 	      		format.html {render action: 'new'}

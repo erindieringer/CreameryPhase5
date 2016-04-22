@@ -1,5 +1,6 @@
 
 <%= simple_form_for @store_flavor, html: { :class => 'form-horizontal' }, remote: true do |f| %>
+  
   <%= f.input :store_id, label: "Store", collection: Store.active.all, input_html: {class: "avg"} %>
 
   <!-- Note in this case that can't use @town; use params[:town_id] -->
