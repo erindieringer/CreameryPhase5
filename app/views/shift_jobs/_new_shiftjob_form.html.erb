@@ -1,3 +1,4 @@
+<div id = "new_shift_job">
 <%= simple_form_for @shift_job, html: { :class => 'form-horizontal' }, remote: true do |f| %>
   
   <%= f.input :job_id, label: "Job", collection: Job.active.all, input_html: {class: "avg"} %>
@@ -9,3 +10,4 @@
     <%= link_to 'Cancel', shift_path(params[:shift_id]), class: 'button tiny radius alert' %>
   </div>
 <% end %>
+  </div>

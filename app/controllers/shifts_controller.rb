@@ -8,7 +8,7 @@ class ShiftsController < ApplicationController
 
 	def show
 		@assignment = @shift.assignment
-		@jobs = nil #@shift.shift_jobs
+		@jobs = @shift.shift_jobs
 	end
 
 	def new
@@ -20,24 +20,44 @@ class ShiftsController < ApplicationController
 
 	def create
 		@shift = Shift.new(shift_params)
-		if @shift.save
-			redirect_to shift_path(@shift), notice: "Sucessfully created new shift on #{@shift.date} for #{@shift.assignment.store}."
-		else
-			render action: 'new'
+		respond_to do |format|
+			if @shift.save
+				format.html {redirect_to shift_path(@shift), notice: "Sucessfully created new shift on #{@shift.date} for #{@shift.assignment.store}."}
+				format.json { render action: 'show', status: :created, location: @shift }
+				@jobs = @shift.shift_jobs
+				format.js
+			else
+				format.html {render action: 'new'}
+				format.json { render json: @shift.errors, status: :unprocessable_entity }
+				format.js
+			end
 		end
 	end
 
 	def update
-		if @shift.update(shift_params)
-			redirect_to shift_path(@shift), notice: "Sucessfully update shift on #{@shift.date} for #{@shift.assignment.store}."
-		else
-			render action: 'edit'
+		respond_to do |format|
+			if @shift.update(shift_params)
+				format.html {redirect_to shift_path(@shift), notice: "Sucessfully update shift on #{@shift.date} for #{@shift.assignment.store}."}
+				format.json { head :no_content }
+				@jobs = @shift.shift_jobs
+				format.js
+			else
+				format.html {render action: 'edit'}
+				format.json { render json: @shift.errors, status: :unprocessable_entity }
+				format.js
+			end
 		end
 	end
 
 	def destroy
 		@shift.destroy
-		redirect_to shifts_path, notice: "Sucessfully destroyed shift for #{@shift.assignment.employee.name} on #{@shift.date} at #{@shift.assignment.store} from the AMC system."
+		respond_to do |format|
+			format.html {redirect_to shifts_path, notice: "Sucessfully destroyed shift for #{@shift.assignment.employee.name} on #{@shift.date} at #{@shift.assignment.store} from the AMC system."}
+			format.json { head :no_content }
+			@jobs = @shift.shift_jobs
+			format.js
+
+		end
 	end
 
 	private

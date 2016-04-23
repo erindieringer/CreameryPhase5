@@ -2,7 +2,7 @@ class ShiftJobsController < ApplicationController
 	before_action :set_shift_job, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@shift_jobs = ShiftJob.to_a
+		@shift_jobs = ShiftJob.all
 	end
 
 	def show
@@ -19,13 +19,16 @@ class ShiftJobsController < ApplicationController
 		@shift_job = ShiftJob.new(shift_job_params)
 		respond_to do |format|
 			if @shift_job.save
-	      		format.html {redirect_to employee_path, notice: "Thank you for signing up!"}
+	      		format.html {redirect_to shifts_path, notice: "Thank you for signing up!"}
 	      		@shift = @shift_job.shift
 	      		@shift_jobs = @shift.shift_jobs
+	      		@jobs = @shift_job.shift.jobs
 	      		format.json { render action: 'show', status: :created, location: @shift_job }
+	      		format.js
 	      	else
 	      		format.html {render action: 'new'}
 	      		format.json { render json: @shift_jobs.errors, status: :unprocessable_entity }
+	      		format.js
 	      	end
 	    end
 	end
@@ -33,11 +36,14 @@ class ShiftJobsController < ApplicationController
 	def update
 		respond_to do |format|
 			if @shift_job.update(shift_job_params)
-	      		format.html {redirect_to shift_job_path, notice: "Successfully updated #{@user}."}
+	      		format.html {redirect_to shifts_path, notice: "Successfully updated #{@user}."}
+	      		@jobs = @shift_job.shift.jobs
 	      		format.json { head :no_content }
+	      		format.js
 	    	else
 	      		format.html {render action: 'edit'}
 	      		format.json { render json: @shift_jobs.errors, status: :unprocessable_entity }
+	      		format.js
 	    	end
 	    end
 	end
@@ -45,14 +51,16 @@ class ShiftJobsController < ApplicationController
 	def destroy
 		@shift_job.destroy
 		respond_to do |format|
-			format.html {redirect_to shift_jobs_path, notice: "Sucessfully destroyed from the AMC system."}
+			format.html {redirect_to shifts_path, notice: "Sucessfully destroyed #{@shift_job} from the AMC system."}
+			@jobs = @shift_job.shift.jobs
 			format.json { head :no_content }
+			format.js
 		end
 	end
 
 	private
 	def set_shift_job
-		@shift_job= ShiftJob.find(params[:id])
+		@shift_job = ShiftJob.find(params[:id])
 	end
 
 	def shift_job_params
