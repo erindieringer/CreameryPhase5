@@ -4,7 +4,7 @@
 	    <h3>Current Flavors for <%= @store.name %> </h3>
 	    <ul>
 	      <% @current_flavors.each do |flavor| %>
-	        <li><%= link_to flavor.name, flavor_path(flavor) %></li>
+	        <li><%= link_to flavor.flavor.name, flavor_path(flavor.flavor) %></li>
 	      <% end %>
 	    </ul>
 	  </div>
