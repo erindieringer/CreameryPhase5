@@ -1,6 +1,7 @@
 class FlavorsController < ApplicationController
 	before_action :set_flavor, only: [:show, :edit, :update, :destroy]
 
+
 	def index
 		@active_flavors = Flavor.active.alphabetical.paginate(page: params[:page]).per_page(10)
 		@inactive_flavors = Flavor.inactive.alphabetical.paginate(page: params[:page]).per_page(10)

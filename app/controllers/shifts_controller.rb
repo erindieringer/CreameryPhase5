@@ -1,5 +1,7 @@
 class ShiftsController < ApplicationController
 	before_action :set_shift, only: [:show, :edit, :update, :destroy]
+	before_action :check_login
+  	authorize_resource
 
 	def index
 		@upcoming_shifts = Shift.upcoming.by_store.paginate(page: params[:page]).per_page(10)

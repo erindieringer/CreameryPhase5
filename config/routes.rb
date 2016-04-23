@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   resources :users
   resources :shift_jobs
   resources :store_flavors
+  resources :sessions
+
+  get 'logout' => 'sessions#destroy', as: :logout
+  get 'login' => 'sessions#new', as: :login
 
   # Semi-static page routes
   get 'home' => 'home#home', as: :home

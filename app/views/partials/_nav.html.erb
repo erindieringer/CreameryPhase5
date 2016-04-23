@@ -60,6 +60,21 @@
         </li>
       </ul>
 
+    <% if logged_in? %>
+          <ul class="right">
+            <li class="has-dropdown">
+            <%= link_to "Welcome, #{current_user.employee.first_name}", user_path(current_user) %>
+            <ul class="dropdown">
+              <li><%= link_to "Edit settings", edit_employee_path(current_user.employee) %></li>
+              <li><%= link_to "Logout", logout_path %></li>
+            </ul>
+          </li>
+    <% else %>
+        <ul class="right">
+          <li><%= link_to "Login", new_session_path %> </li>
+        </ul>
+    <% end %>
+
     </section>
   </nav>
 </div>
