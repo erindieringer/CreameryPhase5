@@ -9,6 +9,7 @@ class AssignmentsController < ApplicationController
   end
 
    def show
+      authorize! :show, @assignment
      @shifts = @assignment.shifts.chronological.paginate(page: params[:page]).per_page(10) 
     
    end

@@ -6,14 +6,73 @@ class Ability
 
   	#authorization for admin
     if user.role? :admin
-      # they get to do it all
       can :manage, :all
+     
      elsif user.role? :manager
-     	can :index, Employee
+     	can :read, Store
+      can :read, Job
+      can :read, Flavor
+
+      can :read, Employee do |employees|
+        managed_store = user.employee.current_assignment.store_id
+        employees.current_assignment.store_id == managed_store
+      end
+
+      can :read, Assignment do |assign|
+        managed_store = user.employee.current_assignment.store_id
+        assign.store_id == managed_store
+      end
+
+      can :read,  Shift do |s|
+        managed_store = user.employee.current_assignment.store_id
+        s.assignment.store_id = managed_store
+      end
+
+      can :create, Shift do |s|
+        managed_store = user.employee.current_assignment.store_id
+        s.assignment.store_id = managed_store
+      end
+
+      can :destroy, Shift do |s|
+        managed_store = user.employee.current_assignment.store_id
+        s.assignment.store_id = managed_store
+      end
+
+      can :update, Shift do |s|
+        managed_store = user.employee.current_assignment.store_id
+        s.assignment.store_id = managed_store
+      end
+
+      can :destroy, ShiftJob do |s|
+        managed_store = user.employee.current_assignment.store_id
+        s.shift.assignment.store_id = managed_store
+      end
+
+      can :create, ShiftJob do |s|
+        managed_store = user.employee.current_assignment.store_id
+        s.shift.assignment.store_id = managed_store
+      end
+
+
      elsif user.role? :employee
-     	can :show, Employee
+     	can :read, Employee do |e|
+        e.id == user.employee.id
+      end
+
+      can :read, Assignment do |a|
+        a.id == user.employee.current_assignment.id
+      end
+
+      can :read, Shift do |s|
+        s.assignment_id == user.employee.current_assignment.id
+      end
+
+      can :read, ShiftJob do |s|
+        s.shift.assignment_id == user.employee.current_assignment.id
+      end
+
      else
-     	can :read, Domain
+     	can :read, Store
      end	
     
   end

@@ -54,7 +54,7 @@ class ShiftsController < ApplicationController
 	def destroy
 		@shift.destroy
 		respond_to do |format|
-			format.html {redirect_to shifts_path, notice: "Sucessfully destroyed shift for #{@shift.assignment.employee.name} on #{@shift.date} at #{@shift.assignment.store} from the AMC system."}
+			format.html {redirect_to shifts_path, notice: "Sucessfully destroyed shift for #{@shift.assignment.employee.name} on #{@shift.date} at #{@shift.assignment.store.name} from the AMC system."}
 			format.json { head :no_content }
 			@jobs = @shift.shift_jobs
 			format.js

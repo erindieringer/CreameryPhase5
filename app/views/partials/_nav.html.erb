@@ -8,59 +8,73 @@
         <!-- options for stores -->
         <li class="has-dropdown">
           <%= link_to "Stores", stores_path %>
-          <ul class="dropdown">
-            <li><%= link_to "Store List", stores_path %></li>
-            <li><%= link_to "Add a Store", new_store_path %></li>
-          </ul>
-        </li>
+            <% if logged_in? && current_user.employee.role == "admin"%>
+              <ul class="dropdown">
+                <li><%= link_to "Store List", stores_path %></li>
+                <li><%= link_to "Add a Store", new_store_path %></li>
+              </ul>
 
+              <%end %>
+            </li>
+
+    <% if logged_in? %>
         <!-- options for employees -->
         <li class="has-dropdown">
           <%= link_to "Employees", employees_path %>
-          <ul class="dropdown">
-            <li><%= link_to "Employee List", employees_path %></li>
-            <li><%= link_to "Add an Employee", new_employee_path %></li>
-          </ul>
+            <% if current_user.employee.role== "admin"%>
+                <ul class="dropdown">
+                  <li><%= link_to "Employee List", employees_path %></li>
+                  <li><%= link_to "Add an Employee", new_employee_path %></li>
+                </ul>
+            <%end%>
         </li>
 
         <!-- options for assignments -->
         <li class="has-dropdown">
           <%= link_to "Assignments", assignments_path %>
-          <ul class="dropdown">
-            <li><%= link_to "Assignment List", assignments_path %></li>
-            <li><%= link_to "Create New Assignment", new_assignment_path %></li>
-          </ul>
+          <% if current_user.employee.role == "admin"%>
+            <ul class="dropdown">
+              <li><%= link_to "Assignment List", assignments_path %></li>
+              <li><%= link_to "Create New Assignment", new_assignment_path %></li>
+            </ul>
+          <%end%>
         </li>
         
         <!-- options for shifts -->
         <li class="has-dropdown">
           <%= link_to "Shifts", shifts_path %>
-          <ul class="dropdown">
-            <li><%= link_to "Shift List", shifts_path %></li>
-            <li><%= link_to "Create New Shift", new_shift_path %></li>
-          </ul>
+          <% if current_user.employee.role == "admin" || current_user.employee.role == "manager"%>
+            <ul class="dropdown">
+              <li><%= link_to "Shift List", shifts_path %></li>
+              <li><%= link_to "Create New Shift", new_shift_path %></li>
+            </ul>
+          <%end%>
         </li>
 
         <!-- options for jobs -->
         <li class="has-dropdown">
           <%= link_to "Jobs", jobs_path %>
-          <ul class="dropdown">
-            <li><%= link_to "Jobs List", jobs_path %></li>
-            <li><%= link_to "Create New Job", new_job_path %></li>
-          </ul>
+          <% if current_user.employee.role == "admin"%> 
+            <ul class="dropdown">
+              <li><%= link_to "Jobs List", jobs_path %></li>
+              <li><%= link_to "Create New Job", new_job_path %></li>
+            </ul>
+          <%end%>
         </li>
 
         <!-- options for flavors -->
         <li class="has-dropdown">
           <%= link_to "Flavors", flavors_path %>
-          <ul class="dropdown">
-            <li><%= link_to "Flavors List", flavors_path %></li>
-            <li><%= link_to "Create New Flavor", new_flavor_path %></li>
-          </ul>
+          <% if current_user.employee.role == "admin"%>          
+            <ul class="dropdown">
+              <li><%= link_to "Flavors List", flavors_path %></li>
+              <li><%= link_to "Create New Flavor", new_flavor_path %></li>
+            </ul>
+        <%end%>
         </li>
+
       </ul>
 
-    <% if logged_in? %>
           <ul class="right">
             <li class="has-dropdown">
             <%= link_to "Welcome, #{current_user.employee.first_name}", user_path(current_user) %>
