@@ -25,9 +25,11 @@ class JobsController < ApplicationController
 			if @job.save
 				format.html {redirect_to job_path(@job), notice: "Sucessfully created #{@job.name}."}
 				format.json { render action: 'show', status: :created, location: @job }
+				format.js
 			else
 				format.html {render action: 'new'}
 				format.json { render json: @jobs.errors, status: :unprocessable_entity }
+				format.js
 			end
 		end
 	end

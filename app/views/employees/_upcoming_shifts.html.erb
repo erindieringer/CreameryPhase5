@@ -1,26 +1,39 @@
-<h3>Upcoming Shifts</h3>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Time</th>
-      <th>&nbsp;</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @shifts.each do |shift| %>
-      <tr>
-        <td>
-          <%= shift.date.strftime("%m/%d/%y") %>
-      	</td>
-      	<td> <%= shift.start_time.strftime("%r")%> - <%= shift.end_time.strftime("%r")%> </td>
-        <td>
-            <%= link_to(shift_path(shift), class: 'button tiny radius') do %>
-              &nbsp;View&nbsp;
-            <% end %>
-          </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= will_paginate @shifts, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+<div id = "shifts" 
+ <% unless @employee.active == false %>  
+  <% unless @shifts.nil?%>
+    <h3>Upcoming Shifts</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Time</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @shifts.each do |shift| %>
+          <tr>
+            <td>
+              <%= shift.date.strftime("%m/%d/%y") %>
+          	</td>
+          	<td> <%= shift.start_time.strftime("%r")%> - <%= shift.end_time.strftime("%r")%> </td>
+            <td>
+                <%= link_to(shift_path(shift), class: 'button tiny radius') do %>
+                  &nbsp;View&nbsp;
+                <% end %>
+              </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate @shifts, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+
+  <%else%>
+    <em>No Upcoming Shifts <em>
+  <%end%>
+
+  <%= link_to(new_shift_path(assignment_id: @employee.current_assignment.id), id: 'new_shift_link', class: 'button tiny radius', remote: true) do %>
+    Add Shift
+  <% end %>
+<%end%>
+</div>

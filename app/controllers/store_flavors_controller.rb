@@ -6,6 +6,7 @@ class StoreFlavorsController < ApplicationController
 
 	def show
 		@store_flavors= StoreFlavor.all
+
 	end
 
 	def new
@@ -21,9 +22,12 @@ class StoreFlavorsController < ApplicationController
 			if @store_flavor.save
 	      		format.html {redirect_to store_flavor_path, notice: "Thank you for signing up!"}
 	      		format.json { render action: 'show', status: :created, location: @store_flavor }
+	      		@store_flavors = @store_flavor.flavor.store_flavors
+	      		format.js
 	      	else
 	      		format.html {render action: 'new'}
 	      		format.json { render json: @store_flavors.errors, status: :unprocessable_entity }
+	      		format.js
 	      	end
 	    end
 	end
@@ -33,9 +37,11 @@ class StoreFlavorsController < ApplicationController
 			if @store_flavor.update(store_flavor_params)
 	      		format.html {redirect_to store_flavor_path, notice: "Successfully updated #{@store_flavor}."}
 	      		format.json { head :no_content }
+	      		format.js
 	    	else
 	      		format.html {render action: 'edit'}
 	      		format.json { render json: @store_flavors.errors, status: :unprocessable_entity }
+	      		format.js
 	    	end
 	    end
 	end
@@ -43,7 +49,7 @@ class StoreFlavorsController < ApplicationController
 	def destroy
 		@store_flavor.destroy
 		respond_to do |format|
-			format.html {redirect_to store_flavors_path, notice: "Sucessfully destroyed from the AMC system."}
+			format.html {redirect_to flavor_path(@store_flavor.flavor), notice: "Sucessfully destroyed #{@store_flavor.flavor.name} from #{@store_flavor.store.name}."}
 			format.json { head :no_content }
 		end
 	end
@@ -59,4 +65,3 @@ class StoreFlavorsController < ApplicationController
 
 end
 
-end

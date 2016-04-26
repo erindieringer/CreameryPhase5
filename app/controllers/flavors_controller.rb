@@ -24,9 +24,11 @@ class FlavorsController < ApplicationController
 			if @flavor.save
 				format.html {redirect_to flavor_path(@flavor), notice: "Sucessfully created #{@flavor.name}."}
 				format.json { render action: 'show', status: :created, location: @flavor }
+				format.js
 			else
 				format.html {render action: 'new'}
 				format.json { render json: @flavors.errors, status: :unprocessable_entity }
+				format.js
 			end
 		end
 	end
@@ -36,9 +38,11 @@ class FlavorsController < ApplicationController
 			if @flavor.update(flavor_params)
 				format.html {redirect_to flavor_path(@flavor), notice: "Sucessfully updated #{@flavor.name}."}
 				format.json { head :no_content }
+				format.js
 			else
 				format.html {render action: 'edit'}
 				format.json { render json: @flavors.errors, status: :unprocessable_entity }
+				format.js
 			end
 		end
 	end

@@ -26,25 +26,40 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.new(employee_params)
-    
-    if @employee.save
-      redirect_to employee_path(@employee), notice: "Successfully created #{@employee.proper_name}."
-    else
-      render action: 'new'
+    respond_to do |format|
+      if @employee.save
+        format.html {redirect_to employee_path(@employee), notice: "Successfully created #{@employee.proper_name}."}
+        format.json { render action: 'show', status: :created, location: @employee }
+        format.js
+      else
+        format.html {render action: 'new'}
+        format.json { render json: @employee.errors, status: :unprocessable_entity }
+        format.js
+      end
     end
   end
 
   def update
-    if @employee.update(employee_params)
-      redirect_to employee_path(@employee), notice: "Successfully updated #{@employee.proper_name}."
-    else
-      render action: 'edit'
+    respond_to do |format|
+      if @employee.update(employee_params)
+        format.html {redirect_to employee_path(@employee), notice: "Successfully updated #{@employee.proper_name}."}
+        format.json { head :no_content }
+        format.js
+      else
+        format.html {render action: 'edit'}
+        format.json { render json: @employee.errors, status: :unprocessable_entity }
+        format.js
+      end
     end
   end
 
   def destroy
     @employee.destroy
-    redirect_to employees_path, notice: "Successfully removed #{@employee.proper_name} from the AMC system."
+    respond_to do |format|
+      format.html {redirect_to employees_path, notice: "Successfully removed #{@employee.proper_name} from the AMC system."}
+      format.json { head :no_content }
+      format.js
+    end
   end
 
   private

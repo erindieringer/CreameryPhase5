@@ -1,4 +1,4 @@
-
+ <div id = "new_store_flavor">
 <%= simple_form_for @store_flavor, html: { :class => 'form-horizontal' }, remote: true do |f| %>
   
   <%= f.input :store_id, label: "Store", collection: Store.active.all, input_html: {class: "avg"} %>
@@ -12,3 +12,4 @@
     <%= link_to 'Cancel', flavor_path(params[:flavor_id]), class: 'button tiny radius alert' %>
   </div>
 <% end %>
+</div>

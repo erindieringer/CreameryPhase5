@@ -1,16 +1,21 @@
-
+<div id = "flavor_details">
 	<h3> <%= @flavor.name %> Details </h3>
-	<% unless @store_flavors.empty? %>
+	<p>
+  		<b>Active:</b> <%= @flavor.active ? "Yes" : "No" %>
+	</p>
+	<% unless @store_flavors.empty? || !@flavor.active%>
 		<%= render 'current_stores' %>
 	<% else %>
 		<p>
 		<em><%= @flavor.name %> not currently assigned to any stores</em>
 		</p>
 	<%end%>
-<div id = "flavor_details">
+
+	<% unless @store_flavors.empty? || !@flavor.active%>
 	
 	<%= link_to(new_store_flavor_path(flavor_id: @flavor.id), id: 'new_storeflavor_link', class: 'button tiny radius', remote: true) do %>
 	  Assign to New Store
 	<% end %>
+	<%end%>
 
 </div>

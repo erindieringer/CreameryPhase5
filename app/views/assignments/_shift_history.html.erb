@@ -24,3 +24,7 @@
   </tbody>
 </table>
 <%= will_paginate @shifts, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+<br>
+  <%= link_to(new_shift_path(assignment_id: @assignment.id), id: 'new_shift_link', class: 'button tiny radius', remote: true) do %>
+    Add Shift
+  <% end %>

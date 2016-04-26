@@ -11,6 +11,7 @@ class ShiftsController < ApplicationController
 	def show
 		@assignment = @shift.assignment
 		@jobs = @shift.shift_jobs
+		@shifts = @assignment.employee.shifts
 	end
 
 	def new
@@ -27,6 +28,8 @@ class ShiftsController < ApplicationController
 				format.html {redirect_to shift_path(@shift), notice: "Sucessfully created new shift on #{@shift.date} for #{@shift.assignment.store}."}
 				format.json { render action: 'show', status: :created, location: @shift }
 				@jobs = @shift.shift_jobs
+				@assignment = @shift.assignment
+				@shifts = @assignment.employee.shifts
 				format.js
 			else
 				format.html {render action: 'new'}
