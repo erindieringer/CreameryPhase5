@@ -9,7 +9,7 @@
     <% end %>
     
   </div>
-<% if logged_in? && current_user.employee.role == "admin"%>  
+<% if logged_in? && current_user.employee.role == "admin" || ( model_name == "shift" && current_user.employee.role == "manager")%>  
   <div class="small-3 columns">
     <!-- Add a button for new instances of object -->
     <%= link_to(eval("new_#{model_name}_path"), class: "button radius") do %>

@@ -53,6 +53,16 @@ class Ability
         s.shift.assignment.store_id = managed_store
       end
 
+      can :destroy, StoreFlavor do |s|
+        managed_store = user.employee.current_assignment.store_id
+        s.store_id = managed_store
+      end
+
+      can :create, StoreFlavor do |s|
+        managed_store = user.employee.current_assignment.store_id
+        s.store_id = managed_store
+      end
+
 
      elsif user.role? :employee
      	can :read, Employee do |e|

@@ -9,6 +9,9 @@
         <th>Store</th>
         <th>Date</th>
         <th>Start Time</th>
+        <% if state == 'Past' %>
+          <th class="centered"> Completed</th>
+        <% end %>        
         <th>&nbsp;</th>
         <th>&nbsp;</th>
         <th>&nbsp;</th>
@@ -24,6 +27,15 @@
             <td><%= link_to shift.assignment.store.name, store_path(shift.assignment.store) %></td>
             <td><%= shift.date.strftime("%m/%d/%y") %></td>
             <td> <%= shift.start_time.strftime("%r")%> </td>
+            <% if state == 'Past' %>
+              <td class="centered"> 
+                  <% if shift.completed? %>
+                      <%= image_tag "check_green.gif"%>
+                  <% else %>
+                    <%= image_tag "remove.png"%>
+                  <% end %>
+              </td>
+            <%end%>
             <td>  
               <%= link_to(shift_path(shift), class: 'button tiny radius') do %>
                 &nbsp;View&nbsp;
@@ -34,7 +46,7 @@
     
             </td>
             <td>
-                <%= link_to(image_tag("remove.png"), shift_path(shift), confirm: 'Are you sure you wish to delete this information?', method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' })  %>
+                <%= link_to(image_tag("delete_dg.gif"), shift_path(shift), confirm: 'Are you sure you wish to delete this information?', method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' })  %>
             </td>
           </tr>
       <% end %>
