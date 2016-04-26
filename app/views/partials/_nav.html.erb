@@ -18,6 +18,7 @@
             </li>
 
     <% if logged_in? %>
+      <% if !current_user.employee.role == "employee"%>
         <!-- options for employees -->
         <li class="has-dropdown">
           <%= link_to "Employees", employees_path %>
@@ -28,6 +29,7 @@
                 </ul>
             <%end%>
         </li>
+      <%end%>
 
         <!-- options for assignments -->
         <li class="has-dropdown">
@@ -52,15 +54,17 @@
         </li>
 
         <!-- options for jobs -->
-        <li class="has-dropdown">
-          <%= link_to "Jobs", jobs_path %>
-          <% if current_user.employee.role == "admin"%> 
-            <ul class="dropdown">
-              <li><%= link_to "Jobs List", jobs_path %></li>
-              <li><%= link_to "Create New Job", new_job_path %></li>
-            </ul>
-          <%end%>
-        </li>
+        <% if !current_user.employee.role == "employee"%>
+          <li class="has-dropdown">
+            <%= link_to "Jobs", jobs_path %>
+            <% if current_user.employee.role == "admin"%> 
+              <ul class="dropdown">
+                <li><%= link_to "Jobs List", jobs_path %></li>
+                <li><%= link_to "Create New Job", new_job_path %></li>
+              </ul>
+            <%end%>
+          </li>
+        <%end%>
 
         <!-- options for flavors -->
         <li class="has-dropdown">

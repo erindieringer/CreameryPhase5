@@ -55,9 +55,15 @@ class Ability
 
 
      elsif user.role? :employee
-     	can :read, Employee do |e|
+     	#can :read, Employee do |e|
+        #e.id == user.employee.id
+      #send
+
+      can :edit, Employee do |e|
         e.id == user.employee.id
       end
+      can :read, Store
+
 
       can :read, Assignment do |a|
         a.id == user.employee.current_assignment.id

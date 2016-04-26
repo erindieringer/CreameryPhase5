@@ -9,37 +9,36 @@
         <th>Phone</th>
         <th>Currently Assigned</th>
         <th>Role</th>
-        <th>&nbsp;</th>
-        <th>&nbsp;</th>
+        <% if logged_in? && current_user.employee.role == "admin"%>  
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+        <%end%>
       </tr>
     </thead>
     <tbody>
-      <% if logged_in? && (current_user.role? :manager)  %>
-          <%# active_employees = [] %>
-          <%# @active_employees.each do |e| %>
-            <%# if e.current_assignment.store_id == current_user.employee.current_assignment.store_id %>
-              <%# active_employees , e %>
-            <%#end %>
-          <%#end%>
-      <% end %>
+  
       <% @active_employees.each do |employee| %>
-
-          <tr>
-            <td><%= link_to employee.name, employee_path(employee) %></td>
-            <td><%= number_to_phone employee.phone unless employee.phone.nil?  %></td>
-            <td><%= link_to employee.current_assignment.store.name, store_path(employee.current_assignment.store) unless employee.current_assignment.nil? %></td>
-            <td><%= employee.role.capitalize %></td>
-            <td>
-              <%= link_to(image_tag("edit_dg.gif"), edit_employee_path(employee))  %>
-    
-            </td>
-            <td>
-                <%= link_to(image_tag("remove.png"), employee_path(employee), confirm: 'Are you sure you wish to delete this information?', method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' })  %>
-            </td>
-          </tr>
-      <% end %>
+        <% if logged_in? && current_user.employee.role == "admin" || (current_user.employee.role == "manager" && current_user.employee.current_assignment.store_id == employee.current_assignment.store_id) %>  
+            <tr>
+              <td><%= link_to employee.name, employee_path(employee) %></td>
+              <td><%= number_to_phone employee.phone unless employee.phone.nil?  %></td>
+              <td><%= link_to employee.current_assignment.store.name, store_path(employee.current_assignment.store) unless employee.current_assignment.nil? %></td>
+              <td><%= employee.role.capitalize %></td>
+              <% if logged_in? && current_user.employee.role == "admin"%>
+                <td>
+                  <%= link_to(image_tag("edit_dg.gif"), edit_employee_path(employee))  %>
+        
+                </td>
+                <td>
+                    <%= link_to(image_tag("remove.png"), employee_path(employee), confirm: 'Are you sure you wish to delete this information?', method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' })  %>
+                </td>
+              <%end%>
+            </tr>
     </tbody>
   </table>
-  <%#= will_paginate @active_employees, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+  <%end%>
+  <%end%>
+
+  <%= will_paginate @active_employees, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 
 <% end %>

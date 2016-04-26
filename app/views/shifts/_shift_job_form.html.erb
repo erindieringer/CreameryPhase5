@@ -1,0 +1,11 @@
+  <div class="fields">
+  	<legend> Job </legend>
+      <!-- x icon to remove -->
+      <%= f.link_to_remove("x") %>
+      <!-- fields -->
+      <%= f.input :job_id, collection: Job.active.all%>
+      <%= f.input :store_id, as: :hidden, input_html: { value: params[:store_id] } %>
+
+
+     
+  </div>

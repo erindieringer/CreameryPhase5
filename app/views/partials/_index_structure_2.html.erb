@@ -9,6 +9,7 @@
     <% end %>
     
   </div>
+<% if logged_in? && current_user.employee.role == "admin"%>  
   <div class="small-3 columns">
     <!-- Add a button for new instances of object -->
     <%= link_to(eval("new_#{model_name}_path"), class: "button radius") do %>
@@ -16,5 +17,6 @@
       &nbsp;Add a New <%= model_name.capitalize %>
     <% end %>
   </div>
+<%end%>
 </div>
 

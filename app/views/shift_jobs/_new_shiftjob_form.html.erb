@@ -3,7 +3,6 @@
   
   <%= f.input :job_id, label: "Job", collection: Job.active.all, input_html: {class: "avg"} %>
   <%= f.input :shift_id, as: :hidden, input_html: { value: params[:shift_id] } %>
-
   
   <div class="form-actions">
     <%= f.submit nil, class: 'button tiny radius' %>
