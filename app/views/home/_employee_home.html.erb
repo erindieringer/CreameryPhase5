@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="small-6 columns">
+    <!-- primary partial gets displayed here in main div -->
+    <%= render partial: "current_assignment" %>
+    <!-- sometimes we want another partial below -->
+    <%= render partial: "assign_history" %>
+
+    
+  </div>
+  <div class="small-6 columns">
+    <!-- render the sidebar, if it exists -->
+    <%= render partial: "hours_worked" %>
+    <%= render partial: "upcoming_shifts" %>
+  </div>
+</div>

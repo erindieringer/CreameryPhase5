@@ -32,6 +32,7 @@
       <%end%>
 
         <!-- options for assignments -->
+       <% if !current_user.employee.role == "employee"%>
         <li class="has-dropdown">
           <%= link_to "Assignments", assignments_path %>
           <% if current_user.employee.role == "admin"%>
@@ -41,17 +42,18 @@
             </ul>
           <%end%>
         </li>
+        <%end%>
         
-        <!-- options for shifts -->
-        <li class="has-dropdown">
-          <%= link_to "Shifts", shifts_path %>
-          <% if current_user.employee.role == "admin" || current_user.employee.role == "manager"%>
-            <ul class="dropdown">
-              <li><%= link_to "Shift List", shifts_path %></li>
-              <li><%= link_to "Create New Shift", new_shift_path %></li>
-            </ul>
-          <%end%>
-        </li>
+        <% if !current_user.employee.role == "employee"%>
+          <!-- options for shifts -->
+          <li class="has-dropdown">
+            <%= link_to "Shifts", shifts_path %>
+              <ul class="dropdown">
+                <li><%= link_to "Shift List", shifts_path %></li>
+                <li><%= link_to "Create New Shift", new_shift_path %></li>
+              </ul>
+          </li>
+        <%end%>
 
         <!-- options for jobs -->
         <% if !current_user.employee.role == "employee"%>
@@ -83,7 +85,7 @@
             <li class="has-dropdown">
             <%= link_to "Welcome, #{current_user.employee.first_name}", user_path(current_user) %>
             <ul class="dropdown">
-              <li><%= link_to "Edit settings", edit_employee_path(current_user.employee) %></li>
+              <li><%= link_to "Edit Profile", edit_employee_path(current_user.employee) %></li>
               <li><%= link_to "Logout", logout_path %></li>
             </ul>
           </li>

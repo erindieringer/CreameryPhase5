@@ -1,10 +1,12 @@
-<% unless @inactive_flavors.empty? %>
-  <div class="panel callout radius">
-    <h3>Inactive Flavors</h3>
-    <ul>
-      <% @inactive_flavors.each do |flavor| %>
-        <li><%= link_to flavor.name, flavor_path(flavor) %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<% if logged_in? && current_user.employee.role == "admin"%>	
+	<% unless @inactive_flavors.empty? %>
+	  <div class="panel callout radius">
+	    <h3>Inactive Flavors</h3>
+	    <ul>
+	      <% @inactive_flavors.each do |flavor| %>
+	        <li><%= link_to flavor.name, flavor_path(flavor) %></li>
+	      <% end %>
+	    </ul>
+	  </div>
+	<% end %>
+<%end%>

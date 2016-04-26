@@ -1,0 +1,32 @@
+<% unless current_user.employee.assignments.past.empty? %>
+	 <h4>Past Assignments</h4>
+	<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Store</th>
+        <th class="centered">Pay</th>
+        <th>Start Date</th>
+          <th>End Date</th>
+        <th>&nbsp;</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <% current_user.employee.assignments.past.each do |assignment| %>
+          <tr>
+            <td><%= link_to assignment.store.name, store_path(assignment.store) %></td>
+            <td class="centered"><%= assignment.pay_level %></td>
+            <td><%= assignment.start_date.strftime("%m/%d/%y") %></td>
+            <td><%= assignment.end_date.strftime("%m/%d/%y") %></td>
+            <td>
+              <%= link_to(assignment_path(assignment), class: 'button tiny radius') do %>
+                &nbsp;View&nbsp;
+              <% end %>
+            </td>
+  
+          </tr>
+        <%end%>
+
+    </tbody>
+  </table>
+<%end %>
