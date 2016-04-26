@@ -1,4 +1,4 @@
-<% if logged_in? && (current_user.employee.role == "admin" || current_user.employee.role == "manager")%>	
+<% if logged_in? && (current_user.employee.role == "admin" || current_user.employee.role == "manager" || (current_user.employee.role == "employee" && current_user.employee_id == @employee.id))%>	
 	<div class="row">
 	  <div class="small-7 columns">
 	    <%= render partial: "employee_details" %>
@@ -9,7 +9,8 @@
 
 	  </div>
 	</div>
-
+<% unless current_user.employee.role == "employee" %>
 	<!-- Add buttons to list all, edit project or destroy object -->
 	<%= render partial: "partials/object_options", locals: {model_name: "employee", object: @employee}  %>
+<% end %>
 <%end%>

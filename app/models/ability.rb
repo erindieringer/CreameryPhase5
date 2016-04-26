@@ -69,6 +69,10 @@ class Ability
         e.id == user.employee.id
       end
 
+      can :show, Employee do |e|
+        e.id == user.employee.id
+      end
+
       can :edit, Employee do |e|
         e.id == user.employee.id
       end
@@ -76,7 +80,7 @@ class Ability
       can :read, Store
 
       can :read, Assignment do |a|
-        a.id == user.employee.current_assignment.id
+        a.employee_id == user.employee_id
       end
 
       can :read, Shift do |s|
@@ -92,6 +96,8 @@ class Ability
       can :read, User do |u|
         u.id == user.id
       end
+      can :read, Job 
+
 
      else
      	can :read, Store

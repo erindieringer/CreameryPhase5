@@ -3,4 +3,6 @@
     <%= render partial: "job_details" %>
   </div>
 </div>
-<%= render partial: "partials/object_options", locals: {model_name: "job", object: @job}  %>
+<% unless current_user.employee.role == "employee" %>
+	<%= render partial: "partials/object_options", locals: {model_name: "job", object: @job}  %>
+<% end %>

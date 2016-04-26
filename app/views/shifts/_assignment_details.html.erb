@@ -13,11 +13,13 @@
           <%= @assignment.start_date.strftime("%m/%d/%y") %>
           <% if @assignment.end_date.nil? %>
             &nbsp;&nbsp;&nbsp;
-            <%= link_to(edit_assignment_path(@assignment), class: 'button tiny radius warning') do %>
-              &nbsp;End&nbsp;
+            <% if current_user.employee.role == "admin" %>
+              <%= link_to(edit_assignment_path(@assignment), class: 'button tiny radius warning') do %>
+                &nbsp;End&nbsp;
+                <% end %>
             <% end %>
           <% else %>
-            &nbsp;-&nbsp;<%= a@ssignment.end_date.strftime("%m/%d/%y") %>
+            &nbsp;-&nbsp;<%= @assignment.end_date.strftime("%m/%d/%y") %>
           <% end %>
         </td>
         <td class="centered"><%= @assignment.pay_level %></td>

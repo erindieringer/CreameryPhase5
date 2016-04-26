@@ -1,15 +1,27 @@
 <div class="row">
-  <div class="small-6 columns">
+  <div class="small-10 columns">
+    <%if !current_user.employee.current_assignment.shifts.upcoming.for_next_days(0).nil? %>
+        <%= render partial: "clock_in" %>
+    <%else%>
+        <%= render partial: "next_shift" %>
+    <% end %>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="small-5 columns">
     <!-- primary partial gets displayed here in main div -->
     <%= render partial: "current_assignment" %>
     <!-- sometimes we want another partial below -->
     <%= render partial: "assign_history" %>
 
-    
   </div>
-  <div class="small-6 columns">
-    <!-- render the sidebar, if it exists -->
-    <%= render partial: "hours_worked" %>
+  <div class="small-5 columns">
     <%= render partial: "upcoming_shifts" %>
+     <%= render partial: "hours_worked" %>
+      <%= link_to employee_path(current_user.employee_id),class: 'button radius' do %>
+        &nbsp;<%= "View My Personal Information" %>
+    <% end %>
   </div>
 </div>

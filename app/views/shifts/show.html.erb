@@ -8,4 +8,6 @@
   </div>
 
 </div>
-<%= render partial: "partials/object_options", locals: {model_name: "shift", object: @shift}  %>
+<% unless current_user.employee.role == "employee" %>
+	<%= render partial: "partials/object_options", locals: {model_name: "shift", object: @shift}  %>
+<% end %>

@@ -1,13 +1,10 @@
+
 <div class="panel callout radius">
- <h4>Current Assignment</h4>
+<h4>Current Assignment</h4>
   <p>
-    <b>Store</b>: <%= link_to current_user.employee.current_assignment.store.name, store_path(current_user.employee.current_assignment.store) %>
+    <b>Store</b>: <%= link_to current_user.employee.current_assignment.store.name, store_path(current_user.employee.current_assignment.store) %></p>
+    <p><b>Start date</b>: <%= current_user.employee.current_assignment.start_date.strftime("%m/%d/%y") %>
   </p>
-
-  <p>
-    <b>Start date</b>: <%= current_user.employee.current_assignment.start_date.strftime("%m/%d/%y") %>
-  </p>
-
   <p>
     <b>End date</b>: 
     <% if current_user.employee.current_assignment.end_date.nil? %>
@@ -16,8 +13,10 @@
       <%= current_user.employee.current_assignment.end_date.strftime("%m/%d/%y") %>
     <% end %>
   </p>
-
   <p>
     <b>Pay level</b>: <%= current_user.employee.current_assignment.pay_level %>
   </p>
+  <%= link_to(assignment_path(current_user.employee.current_assignment), class: 'button tiny radius') do %>
+                &nbsp;View&nbsp;
+              <% end %>
 </div>
