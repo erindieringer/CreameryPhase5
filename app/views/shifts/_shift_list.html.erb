@@ -15,25 +15,28 @@
       </tr>
     </thead>
     <tbody>
+      <% if logged_in? && current_user.employee.role == "manager" %>  
+          <% shifts = shifts.for_store(current_user.employee.current_assignment.store_id )%>
+      <% end %>
       <% shifts.each do |shift| %>
-        <tr>
-          <td><%= link_to shift.assignment.employee.proper_name, employee_path(shift.assignment.employee) %></td>
-          <td><%= link_to shift.assignment.store.name, store_path(shift.assignment.store) %></td>
-          <td><%= shift.date.strftime("%m/%d/%y") %></td>
-          <td> <%= shift.start_time.strftime("%r")%> </td>
-          <td>  
-            <%= link_to(shift_path(shift), class: 'button tiny radius') do %>
-              &nbsp;View&nbsp;
-            <% end %>
-          </td>
-          <td>
-            <%= link_to(image_tag("edit_dg.gif"), edit_shift_path(shift))  %>
-  
-          </td>
-          <td>
-              <%= link_to(image_tag("remove.png"), shift_path(shift), confirm: 'Are you sure you wish to delete this information?', method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' })  %>
-          </td>
-        </tr>
+          <tr>
+            <td><%= link_to shift.assignment.employee.proper_name, employee_path(shift.assignment.employee) %></td>
+            <td><%= link_to shift.assignment.store.name, store_path(shift.assignment.store) %></td>
+            <td><%= shift.date.strftime("%m/%d/%y") %></td>
+            <td> <%= shift.start_time.strftime("%r")%> </td>
+            <td>  
+              <%= link_to(shift_path(shift), class: 'button tiny radius') do %>
+                &nbsp;View&nbsp;
+              <% end %>
+            </td>
+            <td>
+              <%= link_to(image_tag("edit_dg.gif"), edit_shift_path(shift))  %>
+    
+            </td>
+            <td>
+                <%= link_to(image_tag("remove.png"), shift_path(shift), confirm: 'Are you sure you wish to delete this information?', method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' })  %>
+            </td>
+          </tr>
       <% end %>
     </tbody>
   </table>
