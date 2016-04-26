@@ -18,7 +18,7 @@
             </li>
 
     <% if logged_in? %>
-      <% if !current_user.employee.role == "employee"%>
+      <% if current_user.employee.role != "employee"%>
         <!-- options for employees -->
         <li class="has-dropdown">
           <%= link_to "Employees", employees_path %>
@@ -32,7 +32,7 @@
       <%end%>
 
         <!-- options for assignments -->
-       <% if !current_user.employee.role == "employee"%>
+       <% if current_user.employee.role != "employee"%>
         <li class="has-dropdown">
           <%= link_to "Assignments", assignments_path %>
           <% if current_user.employee.role == "admin"%>
@@ -44,7 +44,7 @@
         </li>
         <%end%>
         
-        <% if !current_user.employee.role == "employee"%>
+        <% if current_user.employee.role != "employee"%>
           <!-- options for shifts -->
           <li class="has-dropdown">
             <%= link_to "Shifts", shifts_path %>
@@ -56,7 +56,7 @@
         <%end%>
 
         <!-- options for jobs -->
-        <% if !current_user.employee.role == "employee"%>
+        <% if current_user.employee.role != "employee"%>
           <li class="has-dropdown">
             <%= link_to "Jobs", jobs_path %>
             <% if current_user.employee.role == "admin"%> 

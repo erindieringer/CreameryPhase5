@@ -1,31 +1,33 @@
- <div id = "jobs_list">
-  <% if @jobs.empty? %>
-    <p><em>There are no assigned jobs at this time</em></p>
-  <% else %>
-  <h3>Jobs for Shift</h3>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>&nbsp;</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @jobs.each do |job| %>
+<% unless @upcoming_shifts.include? @shift %>   
+   <div id = "jobs_list">
+    <% if @jobs.empty? %>
+      <p><em>There are no assigned jobs at this time</em></p>
+    <% else %>
+    <h3>Jobs for Shift</h3>
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <td><li><%= link_to job.job.name, job_path(job.job) %></li></td>
-          <td>
-              <%= link_to(image_tag("remove.png"), shift_job_path(job), confirm: 'Are you sure you wish to delete this information?', method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' })  %>
-          </td>
+          <th>Name</th>
+          <th>&nbsp;</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <%#= will_paginate @jobs, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
-  <%end%>
+      </thead>
+      <tbody>
+        <% @jobs.each do |job| %>
+          <tr>
+            <td><li><%= link_to job.job.name, job_path(job.job) %></li></td>
+            <td>
+                <%= link_to(image_tag("remove.png"), shift_job_path(job), confirm: 'Are you sure you wish to delete this information?', method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' })  %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%#= will_paginate @jobs, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+    <%end%>
 
-  <%= link_to(new_shift_job_path(shift_id: @shift.id),id: 'new_shiftjob_link', class: 'button tiny radius', remote: true) do %>
-  Add New Job
+    <%= link_to(new_shift_job_path(shift_id: @shift.id),id: 'new_shiftjob_link', class: 'button tiny radius', remote: true) do %>
+    Add New Job
+  <% end %>
+
+  </div>
 <% end %>
-
-</div>

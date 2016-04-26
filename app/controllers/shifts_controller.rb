@@ -12,6 +12,7 @@ class ShiftsController < ApplicationController
 		@assignment = @shift.assignment
 		@jobs = @shift.shift_jobs
 		@shifts = @assignment.employee.shifts
+		@upcoming_shifts = Shift.upcoming.by_store
 	end
 
 	def new

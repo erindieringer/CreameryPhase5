@@ -16,9 +16,8 @@
       </tr>
     </thead>
     <tbody>
-  
-      <% @active_employees.each do |employee| %>
-        <% if logged_in? && current_user.employee.role == "admin" || (current_user.employee.role == "manager" && current_user.employee.current_assignment.store_id == employee.current_assignment.store_id) %>  
+      <% @active_employees.each do |employee|%>
+        <% if logged_in? && current_user.employee.role == "admin" || ( !employee.current_assignment.nil? &&current_user.employee.role == "manager" && current_user.employee.current_assignment.store_id == employee.current_assignment.store_id) %>  
             <tr>
               <td><%= link_to employee.name, employee_path(employee) %></td>
               <td><%= number_to_phone employee.phone unless employee.phone.nil?  %></td>
@@ -34,11 +33,12 @@
                 </td>
               <%end%>
             </tr>
+    <%end%>
+    <%end%>
     </tbody>
   </table>
-  <%end%>
-  <%end%>
 
+<% if current_user.employee.role == "admin" %>
   <%= will_paginate @active_employees, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
-
+<% end %>
 <% end %>

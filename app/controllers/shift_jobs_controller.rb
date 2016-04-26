@@ -24,6 +24,7 @@ class ShiftJobsController < ApplicationController
 	      		@shift_jobs = @shift.shift_jobs
 	      		@jobs = @shift_job.shift.jobs
 	      		format.json { render action: 'show', status: :created, location: @shift_job }
+	      		@shift_jobs = @shift_job.shift.shift_jobs
 	      		format.js
 	      	else
 	      		format.html {render action: 'new'}
