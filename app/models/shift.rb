@@ -12,6 +12,9 @@ class Shift < ActiveRecord::Base
   validates_time :end_time, after: :start_time, allow_blank: true
   validate :assignment_must_be_current
 
+  #before_validation :set_date_from_string
+  
+
   accepts_nested_attributes_for :shift_jobs, reject_if: lambda { |job| job[:name].blank? }, allow_destroy: true
 
   # Scopes
@@ -29,6 +32,18 @@ class Shift < ActiveRecord::Base
   # alternative ways of finding 'incomplete' scope:
   # scope :incomplete, -> { where('id NOT IN (?)', Shift.completed.map(&:id)) }
   # a class method to also find incomplete shifts using array operations...
+  
+  #def set_date_from_string
+  #  return true if self.date_string.nil?
+  #  date = Chronic.parse(self.date_string)
+  #  if date.nil?
+  #    self.errors.add :date_string, "was not a proper date: #{self.date_string}"
+  #  end
+  #  self.date = date
+  #end
+
+
+
   def self.not_completed
     all_shifts = Shift.all
     completed_shifts = Shift.completed

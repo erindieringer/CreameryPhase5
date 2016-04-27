@@ -28,6 +28,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'nested_form'
 
+gem 'jquery-ui-rails'
+
 # Other gems used
 gem 'time_date_helpers'
 gem 'validates_timeliness'
@@ -37,6 +39,7 @@ gem 'will_paginate'
 gem 'foundation-rails', '5.5.3.2'
 gem 'font-awesome-sass-rails', '3.0.2.2'
 gem 'geocoder', '1.3.2'
+gem 'chronic', '0.10.2'
 
 
 group :development, :test do

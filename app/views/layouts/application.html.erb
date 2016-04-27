@@ -7,7 +7,9 @@
     <title>A &amp; M Creamery</title>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+  
   </head>
 
   <body>
@@ -28,6 +30,6 @@
         <%= render partial: 'partials/footer' %>
       </div>
     </footer> 
-    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag  "application" %>
   </body>
 </html>
