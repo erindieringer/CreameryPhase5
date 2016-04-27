@@ -20,8 +20,8 @@ class ShiftJobsController < ApplicationController
 		respond_to do |format|
 			if @shift_job.save
 	      		format.html {redirect_to shifts_path, notice: "Thank you for signing up!"}
-	      		@shift = @shift_job.shift
-	      		@jobs = @shift_job.shift.jobs
+	      		#@shift = @shift_job.shift
+	      		#@jobs = @shift_job.shift.jobs
 	      		format.json { render action: 'show', status: :created, location: @shift_job }
 	      		@shift_jobs = @shift_job.shift.shift_jobs
 	      		format.js
