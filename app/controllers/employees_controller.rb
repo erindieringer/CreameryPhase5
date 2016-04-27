@@ -23,10 +23,17 @@ class EmployeesController < ApplicationController
 
   def new
     @employee = Employee.new
-    @employee.user.build unless @employee.user.nil?
+    user = @employee.build_user
+    # @employee.user.build unless @employee.user.nil?
   end
 
   def edit
+    if @employee.user.nil?
+      user = @employee.build_user
+    else
+      user = @employee.user
+    end
+    
   end
 
   def create

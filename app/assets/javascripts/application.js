@@ -12,19 +12,19 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require foundation.min
 //= require foundation
-//= require_tree .
 //= require jquery_nested_form
 //= require jquery-ui
 
-$(function() {
-  $(document).foundation('topbar', 'reflow');
-});
 
 $(function() {
+  $(document).foundation('topbar', 'reflow');
   $(".datepicker").datepicker({
     format: 'mm/dd/YYYY'
   });
- });
+});
+
+// $(function() {
+  
+//  });
 

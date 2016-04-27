@@ -67,6 +67,14 @@ class ShiftsController < ApplicationController
 		end
 	end
 
+	def start_now
+		@shift.start_time = Time.now
+	end
+
+	def end_now
+		@shift.end_time = Time.now
+	end
+
 	private
 	def set_shift
 		@shift = Shift.find(params[:id])

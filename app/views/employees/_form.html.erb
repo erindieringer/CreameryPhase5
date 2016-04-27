@@ -6,11 +6,12 @@
           
           <div id="employee_user">
             <%= employee_forms.simple_fields_for :user do |user_forms| %>
+                <%= user_forms.link_to_remove("x") %>
                 <%= render :partial => "user_form", :locals => { :f => user_forms } %>
-                <%= user_forms.submit nil, :class => 'button radius' %>
+                <%# user_forms.submit nil, :class => 'button radius' %>
             <% end %> 
             <p>
-              <br /><%= employee_forms.link_to_add("Add User", :user, :class => 'button tiny') %>
+              <br/><%# employee_forms.link_to_add("Add User", :user, :class => 'button tiny') %>
             </p>
           </div> 
 

@@ -1,5 +1,5 @@
 class StoreFlavorsController < ApplicationController
-	before_action :set_store_flavor, only: [:show, :edit, :update, :destroy]
+	before_action :set_store_flavor, only: [:show, :edit, :update]
 
 	def index
 	end
@@ -21,7 +21,8 @@ class StoreFlavorsController < ApplicationController
 			if @store_flavor.save
 	      		format.html {redirect_to store_flavor_path, notice: "Thank you for signing up!"}
 	      		format.json { render action: 'show', status: :created, location: @store_flavor }
-	      		@store_flavors = @store_flavor.flavor.store_flavors
+	      		@flavor = @store_flavor.flavor
+	      		@store_flavors = @flavor.store_flavors
 	      		format.js
 	      	else
 	      		format.html {render action: 'new'}
@@ -46,9 +47,11 @@ class StoreFlavorsController < ApplicationController
 	end
 
 	def destroy
+		@store_flavor= StoreFlavor.find(params[:id])
+		@flavor = @store_flavor.flavor
 		@store_flavor.destroy
 		respond_to do |format|
-			format.html {redirect_to flavor_path(@store_flavor.flavor), notice: "Sucessfully destroyed #{@store_flavor.flavor.name} from #{@store_flavor.store.name}."}
+			format.html {redirect_to flavor_path(@flavor), notice: "Sucessfully destroyed #{@flavor.name}."}
 			format.json { head :no_content }
 		end
 	end
