@@ -60,11 +60,16 @@ class AssignmentsController < ApplicationController
   end
 
   private
+  def convert_start_and_end_dates
+      params[:assignment][:start_date] = convert_to_date(params[:assignment][:start_date]) unless params[:assignment][:start_date].blank?
+      params[:assignment][:end_date] = convert_to_date(params[:assignment][:end_date]) unless params[:assignment][:end_date].blank?
+  end
   def set_assignment
     @assignment = Assignment.find(params[:id])
   end
 
   def assignment_params
+    convert_start_and_end_dates
     params.require(:assignment).permit(:employee_id, :store_id, :start_date, :end_date, :pay_level)
   end
 

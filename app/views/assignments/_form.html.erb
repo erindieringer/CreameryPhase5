@@ -8,7 +8,7 @@
   
     <%# Only show the end_date on 'edit', not 'new' %>
     <% if controller.action_name == "edit" %>
-      <%= f.input :end_date, :label => "End Date", :as => :date, :start_year => Date.today.year, :end_year => Date.today.year - 1, :order => [:month, :day, :year] %>
+        <%= f.input :end_date, :label => "End Date", as: :string, :input_html => {:class => "avg datepicker"} %>
     <% end %>
     
     <%= f.input :pay_level, :collection => 1..6, :include_blank => true, input_html: {class: "avg"} %>

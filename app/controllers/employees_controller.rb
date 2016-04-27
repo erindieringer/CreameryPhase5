@@ -17,7 +17,7 @@ class EmployeesController < ApplicationController
     # get the assignment history for this employee
     @assignments = @employee.assignments.chronological.paginate(page: params[:page]).per_page(5)
     # get upcoming shifts for this employee (later)
-    @shifts = @employee.current_assignment.shifts.upcoming.for_next_days(14).chronological.paginate(page: params[:page]).per_page(5) unless @employee.current_assignment.nil?
+    @shifts = @employee.current_assignment.shifts.upcoming.chronological.paginate(page: params[:page]).per_page(5) unless @employee.current_assignment.nil?
     @user = @employee.user  
   end
 
@@ -42,6 +42,7 @@ class EmployeesController < ApplicationController
       if @employee.save
         format.html {redirect_to employee_path(@employee), notice: "Successfully created #{@employee.proper_name}."}
         format.json { render action: 'show', status: :created, location: @employee }
+        @shifts = @employee.current_assignment.shifts.upcoming.chronological..paginate(page: params[:page]).per_page(5)
         format.js
       else
         format.html {render action: 'new'}

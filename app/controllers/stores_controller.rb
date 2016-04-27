@@ -19,7 +19,7 @@ class StoresController < ApplicationController
         end 
       end 
     end
-    #@shifts = @shifts.paginate(page: params[:page]).per_page(8)
+    @shifts = @shifts.sort.paginate(:page => params[:page], :per_page => 6)
   end
 
   def new

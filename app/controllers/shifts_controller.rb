@@ -76,11 +76,15 @@ class ShiftsController < ApplicationController
 	end
 
 	private
+    def convert_date
+      params[:shift][:date] = convert_to_date(params[:shift][:date]) unless params[:shift][:date].blank?
+    end
 	def set_shift
 		@shift = Shift.find(params[:id])
 	end
 
 	def shift_params
+		convert_date
 		params.require(:shift).permit(:assignment_id, :date, :start_time) #date_string
 	end
 

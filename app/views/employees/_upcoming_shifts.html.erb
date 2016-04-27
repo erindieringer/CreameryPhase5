@@ -1,3 +1,5 @@
+
+  <% unless @employee.nil?%>  
  <% unless @employee.active == false %>  
   <% unless @shifts.empty?%>
 <h3>Upcoming Shifts</h3>
@@ -36,5 +38,6 @@
       Add Shift
     <% end %>
     <% end %>
+<%end%>
 <%end%>
 </div>
