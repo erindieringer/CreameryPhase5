@@ -1,9 +1,12 @@
+
+<% unless @upcoming_shifts.nil? %>
 <% unless @upcoming_shifts.include? @shift %>   
-   <div id = "jobs_list">
+<div id = "jobs_list">
     <% if @jobs.empty? %>
       <p><em>There are no assigned jobs at this time</em></p>
     <% else %>
     <h3>Jobs for Shift</h3>
+
     <table class="table table-striped">
       <thead>
         <tr>
@@ -14,6 +17,7 @@
         </tr>
       </thead>
       <tbody>
+       
         <% @jobs.each do |job| %>
           <tr>
             <td><li><%= link_to job.job.name, job_path(job.job) %></li></td>
@@ -35,4 +39,5 @@
 <% end %>
 
   </div>
+<% end %>
 <% end %>
