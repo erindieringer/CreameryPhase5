@@ -13,8 +13,7 @@
           <th>End Date</th>
         <% end %>
         <th>&nbsp;</th>
-        <% if logged_in? && current_user.employee.role == "admin"%>
-          <th>&nbsp;</th>
+        <% if logged_in? && current_user.employee.role == "admin" && state == 'current'%>
           <th>&nbsp;</th>
         <%end%>
 
@@ -40,13 +39,9 @@
                 &nbsp;View&nbsp;
               <% end %>
             </td>
-            <% if logged_in? && current_user.employee.role == "admin"%>
+            <% if logged_in? && current_user.employee.role == "admin" && state == 'current'%>
               <td>
                 <%= link_to(image_tag("edit_dg.gif"), edit_assignment_path(assignment))  %>
-      
-              </td>
-              <td>
-                  <%= link_to(image_tag("delete_dg.gif"), assignment_path(assignment), confirm: 'Are you sure you wish to delete this information?', method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' })  %>
               </td>
             <%end%>
           </tr>
