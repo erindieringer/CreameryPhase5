@@ -1,0 +1,26 @@
+
+    <%= simple_nested_form_for @shift, :html => { :class => 'form-horizontal' } do |shift_form| %>
+        <fieldset>
+              <legend><%= controller.action_name.capitalize %> Shift</legend>
+                      <%= render :partial => "edit_shift_fields", :locals => { :f => shift_form } %> 
+
+              <div id= "shift_job_form" >
+                <%= shift_form.simple_fields_for :shift_jobs do |shift_job_form| %>
+                  <%= shift_job_form.link_to_remove("x") %>
+                  <%= render :partial => "shiftjob_form", :locals => { :f => shift_job_form } %>
+                <% end %>
+
+                
+                <br/><% shift_form.link_to_add("Add Job", :shift_jobs, :class => 'button tiny') %>
+               
+
+
+              </div>
+
+        <div class="form-actions">
+          <%= shift_form.submit nil, :class => 'button radius' %>
+          <%= link_to 'Cancel', shifts_path, :class => 'button alert radius' %>
+        </div>
+      </fieldset>
+    <%end %> 
+

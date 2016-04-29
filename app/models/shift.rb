@@ -15,7 +15,7 @@ class Shift < ActiveRecord::Base
   #before_validation :set_date_from_string
   
 
-  accepts_nested_attributes_for :shift_jobs, reject_if: lambda { |job| job[:name].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :shift_jobs#, reject_if: lambda { |job| job[:job_id].blank? }, allow_destroy: true
 
   # Scopes
   scope :chronological, -> { order(:date, :start_time) }
