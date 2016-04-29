@@ -26,7 +26,7 @@
     </tbody>
   </table>
   <%end%>
-  <%#= will_paginate @shifts, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+  <%= will_paginate @shifts, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
   <br> <p>
   <% if @shifts.empty? %>
     <em> No Shift History </em>

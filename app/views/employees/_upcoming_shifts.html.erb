@@ -1,7 +1,7 @@
 
   <% unless @employee.nil?%>  
  <% unless @employee.active == false %>  
-  <% unless @shifts.empty?%>
+  <% unless @upcoming_shifts.empty?%>
 <h3>Upcoming Shifts</h3>
 <div id = "shifts" >
     <table class="table table-striped">
@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @shifts.each do |shift| %>
+        <% @upcoming_shifts.each do |shift| %>
           <tr>
             <td>
               <%= shift.date.strftime("%m/%d/%y") %>
@@ -28,7 +28,7 @@
         <% end %>
       </tbody>
     </table>
-    <%= will_paginate @shifts, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+    <%= will_paginate @upcoming_shifts, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 
   <%else%>
     <em>No Upcoming Shifts <em>

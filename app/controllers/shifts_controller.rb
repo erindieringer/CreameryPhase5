@@ -12,7 +12,8 @@ class ShiftsController < ApplicationController
 	def show
 		@assignment = @shift.assignment
 		@jobs = @shift.shift_jobs
-		@shifts = @assignment.employee.shifts
+		@shifts = @assignment.employee.shifts.paginate(page: params[:page]).per_page(5) 
+		@upcoming_shifts = @assignment.employee.shifts.upcoming
 		@upcoming_shifts = Shift.upcoming.by_store
 	end
 
@@ -31,7 +32,8 @@ class ShiftsController < ApplicationController
 				format.json { render action: 'show', status: :created, location: @shift }
 				@jobs = @shift.shift_jobs
 				@assignment = @shift.assignment
-				@shifts = @assignment.employee.shifts
+				@shifts = @assignment.employee.shifts.paginate(page: params[:page]).per_page(5) 
+				@upcoming_shifts = @assignment.employee.shifts.upcoming
 				format.js
 			else
 				format.html {render action: 'new'}

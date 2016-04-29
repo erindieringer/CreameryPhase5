@@ -1,23 +1,28 @@
- <div id = "new_shift_job">
-  <%= simple_nested_form_for @shift, :html => { :class => 'form-horizontal' } do |shift_form| %>
-      <fieldset>
-            <legend><%= controller.action_name.capitalize %> Shift</legend>
-            <%= render :partial => "shift_form", :locals => { :f => shift_form } %>
-            
-            <div id="shift_job">
-              <%#= shift_form.simple_fields_for :user do |job_forms| %>
-                  <%#= render :partial => "shift_job_form", :locals => { :f => job_forms } %>
-                  <%#= job_forms.submit nil, :class => 'button radius' %>
-              <%# end %> 
-              <p>
-                <br /><%#= shift_form.link_to_add("Add Job", :shift_job, :class => 'button tiny') %>
-              </p>
-            </div> 
+<% if current_user.employee.role == "admin" %>
+   <div id = "new_shift_job">
+    <%= simple_nested_form_for @shift, :html => { :class => 'form-horizontal' } do |shift_form| %>
+        <fieldset>
+              <legend><%= controller.action_name.capitalize %> Shift</legend>
+              <%= render :partial => "shift_form", :locals => { :f => shift_form } %>
+              
+              <div id="shift_job">
+                <%#= shift_form.simple_fields_for :user do |job_forms| %>
+                    <%#= render :partial => "shift_job_form", :locals => { :f => job_forms } %>
+                    <%#= job_forms.submit nil, :class => 'button radius' %>
+                <%# end %> 
+                <p>
+                  <br /><%#= shift_form.link_to_add("Add Job", :shift_job, :class => 'button tiny') %>
+                </p>
+              </div> 
 
-      <div class="form-actions">
-        <%= shift_form.submit nil, :class => 'button radius' %>
-        <%= link_to 'Cancel', shifts_path, :class => 'button alert radius' %>
-      </div>
-    </fieldset>
-  <%end %> 
-</div>
+        <div class="form-actions">
+          <%= shift_form.submit nil, :class => 'button radius' %>
+          <%= link_to 'Cancel', shifts_path, :class => 'button alert radius' %>
+        </div>
+      </fieldset>
+    <%end %> 
+  </div>
+
+ <% elsif current_user.employee.role == "manager" %>
+ 
+ <% end %> 
