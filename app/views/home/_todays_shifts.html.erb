@@ -1,0 +1,29 @@
+<% if @todays_shifts.empty? %>
+  <p><em>There are no scheduled shifts for today.</em></p>
+<% else %>
+  <h3>Today's Shifts for <%= current_user.employee.current_assignment.store.name %></h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Employee</th>
+        <th>Time</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @todays_shifts.each do |shift| %>
+          <tr>
+            <td><%= link_to shift.assignment.employee.name, employee_path(shift.assignment.employee) %></td>
+            <td><%= shift.start_time.strftime("%r")%> - <%=shift.end_time.strftime("%r") %></td>
+            <td>
+              <%= link_to(shift_path(shift), class: 'button tiny radius') do %>
+                &nbsp;View&nbsp;
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @todays_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+<% end %>
+<p>&nbsp;</p>

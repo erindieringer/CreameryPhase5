@@ -47,6 +47,11 @@ class Ability
         s.assignment.store_id = managed_store
       end
 
+      can :complete, Shift do |s|
+        managed_store = user.employee.current_assignment.store_id
+        s.assignment.store_id = managed_store
+      end
+
       can :destroy, ShiftJob do |s|
         managed_store = user.employee.current_assignment.store_id
         s.shift.assignment.store_id = managed_store

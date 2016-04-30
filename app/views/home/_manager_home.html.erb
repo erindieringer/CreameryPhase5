@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="small-10 columns">
+    <%if !current_user.employee.current_assignment.shifts.upcoming.for_next_days(0).empty? %>
+        <%= render partial: "clock_in" %>
+    <%else%>
+        <%= render partial: "next_shift" %>
+    <% end %>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="small-8 columns">
+    <!-- primary partial gets displayed here in main div -->
+    <%= render partial: "shifts_to_complete" %>
+    <%= link_to complete_path,class: 'button radius' do %>
+        &nbsp;<%= "Quick Complete Shifts" %>
+    <% end %>
+    <!-- sometimes we want another partial below -->
+    <%= render partial: "todays_shifts" %>
+    <%= link_to new_shift_path,class: 'button radius' do %>
+        &nbsp;<%= "Quick Add Shifts" %>
+    <% end %>
+  </div>
+
+  <div class="small-4 columns">
+    <%= render partial: "upcoming_shifts" %>
+    <%= render partial: "hours_worked" %>
+    <%= link_to employee_path(current_user.employee_id),class: 'button radius' do %>
+        &nbsp;<%= "View My Personal Information" %>
+    <% end %>
+  </div>
+</div>

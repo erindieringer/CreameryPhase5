@@ -1,3 +1,4 @@
+
 <% shifts = current_user.employee.current_assignment.shifts.for_past_days(7) %>
 <% hours = 0 %>
 <% unless shifts.empty? %>
@@ -6,6 +7,6 @@
 	<% end %>
 <% end %>
 
-<h3> Hours worked this week: <%= hours %> </h3>
+<h4> Hours worked this week: <%= hours %> </h4>
 <br>
 <br>

@@ -4,6 +4,7 @@
               <legend><%= controller.action_name.capitalize %> Shift</legend>
                       <%= render :partial => "edit_shift_fields", :locals => { :f => shift_form } %> 
 
+            <% if @shift.date < Date.current  %> 
               <div id= "shift_job_form" >
                 <%= shift_form.simple_fields_for :shift_jobs do |shift_job_form| %>
                   <%= shift_job_form.link_to_remove("x") %>
@@ -14,11 +15,18 @@
                </p>
 
 
-              </div>
+          
+            <% end %>
+
+            </div>
 
         <div class="form-actions">
           <%= shift_form.submit nil, :class => 'button radius' %>
+        <% if current_user.employee.role == "admin"  %>
           <%= link_to 'Cancel', shifts_path, :class => 'button alert radius' %>
+        <% else %>
+          <%= link_to 'Cancel', home_path, :class => 'button alert radius' %>
+        <% end %>
         </div>
       </fieldset>
     <%end %> 

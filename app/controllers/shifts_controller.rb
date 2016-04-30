@@ -51,7 +51,11 @@ class ShiftsController < ApplicationController
 	def update
 		respond_to do |format|
 			if @shift.update(shift_params)
-				format.html {redirect_to shift_path(@shift), notice: "Sucessfully update shift on #{@shift.date} for #{@shift.assignment.store}."}
+				if current_user.employee.role == "admin"
+					format.html {redirect_to shift_path(@shift), notice: "Sucessfully updated shift on #{@shift.date} for #{@shift.assignment.store.name}."}
+				else
+					format.html {redirect_to home_path, notice: "Sucessfully completed shift on #{@shift.date} for #{@shift.assignment.employee.name}."}
+				end
 				format.json { head :no_content }
 				@jobs = @shift.shift_jobs
 				format.js
@@ -82,6 +86,12 @@ class ShiftsController < ApplicationController
 		@shift.end_time = Time.now
 	end
 
+	def complete
+		@incomplete_shifts = Shift.for_store(current_user.employee.current_assignment.store_id).past.incomplete
+
+	end
+
+	
 	private
     def convert_date
       params[:shift][:date] = convert_to_date(params[:shift][:date]) unless params[:shift][:date].blank?
@@ -92,7 +102,7 @@ class ShiftsController < ApplicationController
 
 	def shift_params
 		convert_date
-		params.require(:shift).permit(:assignment_id, :date, :start_time, shift_job_attributes: [:shift_id, :job_id]) 
+		params.require(:shift).permit(:assignment_id, :date, :start_time, shift_jobs_attributes: [:shift_id, :job_id]) 
 	end
 
 end
