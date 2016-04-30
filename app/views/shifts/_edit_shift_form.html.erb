@@ -9,10 +9,9 @@
                   <%= shift_job_form.link_to_remove("x") %>
                   <%= render :partial => "shiftjob_form", :locals => { :f => shift_job_form } %>
                 <% end %>
-
-                
-                <br/><% shift_form.link_to_add("Add Job", :shift_jobs, :class => 'button tiny') %>
-               
+              <p>
+                <%= shift_form.link_to_add("Add Job", :shift_jobs, :class => 'button tiny') %>
+               </p>
 
 
               </div>

@@ -8,5 +8,7 @@
                               order: [:month, :day, :year], include_blank: true, input_html: {class: "avg"} %>
 
     <%= f.input :phone, input_html: {class: "avg"} %>
-    <%= f.input :role, collection: Employee::ROLES_LIST, include_blank: true, input_html: {class: "avg"} %>
+    <% if current_user.employee.role== "admin"%>
+        <%= f.input :role, collection: Employee::ROLES_LIST, include_blank: true, input_html: {class: "avg"} %>
+    <% end %>
     <%= f.input :active %>

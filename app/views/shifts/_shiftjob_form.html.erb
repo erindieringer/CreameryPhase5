@@ -1,5 +1,5 @@
   <div class="fields">
-  	<legend> Job </legend>
+  	<legend> Assign Job </legend>
 		<%= f.input :job_id, label: "Job", collection: Job.active.all, input_html: {class: "avg"} %>
   		<%= f.input :shift_id, as: :hidden, input_html: { value: params[@shift.id] } %>
       

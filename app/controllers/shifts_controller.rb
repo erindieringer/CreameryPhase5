@@ -15,13 +15,17 @@ class ShiftsController < ApplicationController
 		@shifts = @assignment.employee.shifts.paginate(page: params[:page]).per_page(5) 
 		@upcoming_shifts = @assignment.employee.shifts.upcoming
 		@upcoming_shifts = Shift.upcoming.by_store
+		@shift_jobs = @shift.shift_jobs
 	end
 
 	def new
 		@shift = Shift.new
+		@shift.shift_jobs.build
 	end
 
 	def edit
+		@shift.shift_jobs.build
+		@shift_jobs = @shift.shift_jobs
 	end
 
 	def create
@@ -30,9 +34,10 @@ class ShiftsController < ApplicationController
 			if @shift.save
 				format.html {redirect_to shift_path(@shift), notice: "Sucessfully created new shift on #{@shift.date} for #{@shift.assignment.store}."}
 				format.json { render action: 'show', status: :created, location: @shift }
-				@jobs = @shift.shift_jobs
+				@jobs = @shift.jobs
 				@assignment = @shift.assignment
-				@shifts = @assignment.employee.shifts.paginate(page: params[:page]).per_page(5) 
+				@shifts = @assignment.employee.shifts.paginate(page: params[:page]).per_page(5)
+				@shifts = @shift.assignment.store.shifts 
 				@upcoming_shifts = @assignment.employee.shifts.upcoming
 				format.js
 			else
@@ -87,7 +92,7 @@ class ShiftsController < ApplicationController
 
 	def shift_params
 		convert_date
-		params.require(:shift).permit(:assignment_id, :date, :start_time) #date_string
+		params.require(:shift).permit(:assignment_id, :date, :start_time, shift_job_attributes: [:shift_id, :job_id]) 
 	end
 
 end

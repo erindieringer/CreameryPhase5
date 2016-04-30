@@ -18,6 +18,10 @@ class Ability
         employees.current_assignment.store_id == managed_store
       end
 
+      can :update, Employee do |employee|
+        employee.id == user.employee_id
+      end
+
       can :read, Assignment do |assign|
         managed_store = user.employee.current_assignment.store_id
         assign.store_id == managed_store
@@ -64,6 +68,7 @@ class Ability
       end
 
 
+
      elsif user.role? :employee
      	can :read, Employee do |e|
         e.id == user.employee.id
@@ -73,7 +78,7 @@ class Ability
         e.id == user.employee.id
       end
 
-      can :edit, Employee do |e|
+      can :update, Employee do |e|
         e.id == user.employee.id
       end
       
@@ -90,9 +95,7 @@ class Ability
       can :read, ShiftJob do |s|
         s.shift.assignment_id == user.employee.current_assignment.id
       end
-      can :edit, User do |u|
-        u.id == user.id
-      end
+
       can :read, User do |u|
         u.id == user.id
       end

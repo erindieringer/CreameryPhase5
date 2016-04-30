@@ -1,7 +1,7 @@
 
-  <% unless @employee.nil?%>  
+<% unless @employee.nil?%>  
  <% unless @employee.active == false %>  
-  <% unless @upcoming_shifts.empty?%>
+  <% unless @employee.current_assignment.nil? || @upcoming_shifts.empty? %>
 <h3>Upcoming Shifts</h3>
 <div id = "shifts" >
     <table class="table table-striped">
@@ -33,7 +33,9 @@
   <%else%>
     <em>No Upcoming Shifts <em>
   <%end%>
-<% unless current_user.employee.role == "employee" %>
+  <br/>
+  <br/>
+<% unless current_user.employee.role == "employee" || @employee.current_assignment.nil? %>
     <%= link_to(new_shift_path(assignment_id: @employee.current_assignment.id), id: 'new_shift_link', class: 'button tiny radius', remote: true) do %>
       Add Shift
     <% end %>

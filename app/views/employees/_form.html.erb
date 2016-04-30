@@ -3,7 +3,7 @@
     <fieldset>
           <legend><%= controller.action_name.capitalize %> Employee</legend>
           <%= render :partial => "employee_form", :locals => { :f => employee_forms } %>
-          
+        <% if current_user.employee.role == "admin" %>
           <div id="employee_user">
             <%= employee_forms.simple_fields_for :user do |user_forms| %>
                 <%= user_forms.link_to_remove("x") %>
@@ -14,6 +14,7 @@
               <br/><% employee_forms.link_to_add("Add User", :user, :class => 'button tiny') %>
             </p>
           </div> 
+        <%end%>
 
     <div class="form-actions">
       <%= employee_forms.submit nil, :class => 'button radius' %>
