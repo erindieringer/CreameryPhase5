@@ -52,7 +52,7 @@ $font-family-sans-serif: "Comic Sans MS", Helvetica, Roboto, Arial, sans-serif;
 // $default-float: left;
 
 // We use these as default colors throughout
-// $primary-color: #008CBA;
+ $primary-color: #008CBA;
 // $secondary-color: #e7e7e7;
 // $alert-color: #f04124;
 // $success-color: #43AC6A;
@@ -1215,7 +1215,7 @@ $topbar-bg: $topbar-bg-color;
 }
 
 .project_item {
-  background-color: #d1ecfb;
+  background-color: #ff9999;
   width: 400px;
   padding-left: 10px;
   padding-right: 10px;
@@ -1236,7 +1236,8 @@ $topbar-bg: $topbar-bg-color;
 }
 
 #title_area {
-  background-color: #ffffff;
+  background-color: #ff9999;
+  align: center;
 }
 
 #main_content {
@@ -1247,7 +1248,7 @@ $topbar-bg: $topbar-bg-color;
   margin-top: 15px;
   padding-top: 0px;
   padding-bottom: 15px;
-  background-color:#ffffff;
+  background-color:$green;
   color: #229944;
   text-align: center;
 }
@@ -1337,6 +1338,10 @@ select.time { width: 90px; }
 
 label {
   padding-right: 4px;
+}
+
+#row {
+	float: center;
 }
 
 

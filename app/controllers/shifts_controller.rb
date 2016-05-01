@@ -38,7 +38,7 @@ class ShiftsController < ApplicationController
 				@assignment = @shift.assignment
 				@shifts = @assignment.employee.shifts.paginate(page: params[:page]).per_page(5)
 				@store_shifts = @shift.assignment.store.shifts
-				@upcoming_shifts = @assignment.employee.shifts.upcoming
+				@upcoming_shifts = @shift.assignment.employee.current_assignment.shifts.upcoming.chronological unless @shift.assignment.employee.current_assignment.nil?
 				format.js
 			else
 				format.html {render action: 'new'}

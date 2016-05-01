@@ -17,13 +17,14 @@
         &nbsp;<%= "Quick Complete Shifts" %>
     <% end %>
     <!-- sometimes we want another partial below -->
-    <%= render partial: "todays_shifts" %>
-    <%= link_to new_shift_path,class: 'button radius' do %>
-        &nbsp;<%= "Quick Add Shifts" %>
-    <% end %>
+
   </div>
 
   <div class="small-4 columns">
+      <%= render partial: "todays_shifts" %>
+    <%= link_to new_shift_path,class: 'button radius' do %>
+        &nbsp;<%= "Quick Add Shifts" %>
+    <% end %>
     <%= render partial: "upcoming_shifts" %>
     <%= render partial: "hours_worked" %>
     <%= link_to employee_path(current_user.employee_id),class: 'button radius' do %>

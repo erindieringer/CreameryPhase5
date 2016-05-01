@@ -5,7 +5,8 @@ class StoresController < ApplicationController
   
   def index
     @active_stores = Store.active.alphabetical.paginate(page: params[:page]).per_page(10)
-    @inactive_stores = Store.inactive.alphabetical.paginate(page: params[:page]).per_page(10)  
+    @inactive_stores = Store.inactive.alphabetical.paginate(page: params[:page]).per_page(10) 
+    @stores = Store.all.active
   end
 
   def show

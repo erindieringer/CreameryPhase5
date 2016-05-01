@@ -6,16 +6,20 @@
     <thead>
       <tr>
         <th>Name</th>
+      <% if current_user.employee.role == "admin"%>  
         <th>&nbsp;</th>
+      <%end%>
       </tr>
     </thead>
     <tbody>
       <% jobs.each do |job| %>
         <tr>
           <td><%= link_to job.name, job_path(job) %></td>
+        <% if current_user.employee.role == "admin"%>  
           <td>
             <%= link_to(image_tag("edit_dg.gif"), edit_job_path(job))  %>
           </td>
+        <% end %>
 
         </tr>
       <% end %>
