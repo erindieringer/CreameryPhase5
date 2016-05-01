@@ -3,7 +3,7 @@
   
  <%= f.input :date, :label => "Date", as: :string, :input_html => {:class => "avg datepicker"} %>
 
-	<%= f.input :start_time, as: :time, html5: true, input_html: {class: "avg"} %>
+	<%= f.input :start_time, as: :time,  input_html: {class: "avg"} %>
   <!-- Note in this case that can't use @town; use params[:town_id] -->
   <%= f.input :assignment_id, as: :hidden, input_html: { value: params[:assignment_id] } %>
 

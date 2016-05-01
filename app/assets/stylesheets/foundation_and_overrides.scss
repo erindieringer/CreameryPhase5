@@ -36,9 +36,10 @@
 // $total-columns: 12;
 
 // We use these to control various global styles
-// $body-bg: #fff;
+ $body-bg: #fff;
 // $body-font-color: #222;
-// $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$font-family-sans-serif: "Comic Sans MS", Helvetica, Roboto, Arial, sans-serif;
+ $body-font-family: $font-family-sans-serif;
 // $body-font-weight: normal;
 // $body-font-style: normal;
 
@@ -57,6 +58,7 @@
 // $success-color: #43AC6A;
 // $warning-color: #f08a24;
 // $info-color: #a0d3e8;
+$green: #BCF5A9;
 
 // We use these to make sure border radius matches unless we want it different.
 // $global-radius: 3px;
@@ -1028,7 +1030,7 @@ $panel-bg: scale-color(#E1F7E7, $lightness: -5%);
 // $include-html-table-classes: $include-html-classes;
 
 // These control the background color for the table and even rows
-// $table-bg: #fff;
+ $table-bg: #BCF5A9;
 // $table-even-row-bg: #f9f9f9  ;
 
 // These control the table cell border style
@@ -1123,7 +1125,7 @@ $panel-bg: scale-color(#E1F7E7, $lightness: -5%);
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-$topbar-bg-color: #339966;
+$topbar-bg-color: #BCF5A9;
 $topbar-bg: $topbar-bg-color;
 
 // Height and margin
@@ -1135,7 +1137,7 @@ $topbar-bg: $topbar-bg-color;
 // $topbar-title-font-size: rem-calc(17);
 
 // Style the top bar dropdown elements
-// $topbar-dropdown-bg: #333;
+ $topbar-dropdown-bg: $topbar-bg-color;
 // $topbar-dropdown-link-color: #fff;
 // $topbar-dropdown-link-bg: #333;
 // $topbar-dropdown-link-weight: normal;
@@ -1144,7 +1146,7 @@ $topbar-bg: $topbar-bg-color;
 // $topbar-dropdown-toggle-alpha: 0.4;
 
 // Set the link colors and styles for top-level nav
-// $topbar-link-color: #fff;
+ $topbar-link-color:$topbar-bg-color;
 // $topbar-link-color-hover: #fff;
 // $topbar-link-color-active: #fff;
 // $topbar-link-color-active-hover: #fff;
@@ -1158,7 +1160,7 @@ $topbar-bg: $topbar-bg-color;
 
 // $topbar-button-font-size: 0.75rem;
 
-// $topbar-dropdown-label-color: #777;
+ $topbar-dropdown-label-color: #BCF5A9;
 // $topbar-dropdown-label-text-transform: uppercase;
 // $topbar-dropdown-label-font-weight: bold;
 // $topbar-dropdown-label-font-size: rem-calc(10);
