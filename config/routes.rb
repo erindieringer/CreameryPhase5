@@ -21,7 +21,8 @@ Rails.application.routes.draw do
   get 'privacy' => 'home#privacy', as: :privacy
 
   get 'complete' => 'shifts#complete', as: :complete
-  
+  get 'start_now' => 'shifts#start_now', as: :start_now
+  get 'end_now' => 'shifts#end_now', as: :end_now
   # Set the root url
   root :to => 'home#home'  
   

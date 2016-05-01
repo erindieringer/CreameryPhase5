@@ -79,11 +79,13 @@ class ShiftsController < ApplicationController
 	end
 
 	def start_now
-		@shift = @shift.start_now
+		@shift = current_user.employee.current_assignment.shifts.upcoming.for_next_days(0).first
+		#@shift.start_now
 	end
 
 	def end_now
-		@shift = @shift.end_now
+		@shift = current_user.employee.current_assignment.shifts.upcoming.for_next_days(0).first
+		#@shift.end_now
 	end
 
 	def complete

@@ -72,6 +72,14 @@ class Ability
         s.store_id = managed_store
       end
 
+      can :start_now, Shift do |s|
+        s.assignment_id == user.employee.current_assignment.id
+      end
+
+      can :end_now, Shift do |s|
+        s.assignment_id == user.employee.current_assignment.id
+      end
+
 
 
      elsif user.role? :employee
@@ -105,6 +113,16 @@ class Ability
         u.id == user.id
       end
       can :read, Job 
+
+      can :start_now, Shift do |s|
+        s.assignment_id == user.employee.current_assignment.id
+      end
+
+      can :end_now, Shift do |s|
+        s.assignment_id == user.employee.current_assignment.id
+      end
+
+
 
 
      else
