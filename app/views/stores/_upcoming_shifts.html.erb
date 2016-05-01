@@ -1,5 +1,5 @@
  <%unless !@store.active %>
-  <%unless @shifts.empty? %>
+  <%unless @store_shifts.empty? %>
     <h3>Shifts this week</h3>
     <table class="table table-striped">
       <thead>
@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @shifts.each do |shift| %>
+        <% @store_shifts.each do |shift| %>
           <tr>
             <td>
               <%= shift.date.strftime("%m/%d/%y") %>
@@ -29,7 +29,7 @@
         <% end %>
       </tbody>
     </table>
-    <%= will_paginate @shifts, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+    <%= will_paginate @store_shifts, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 
 
   <%end%>

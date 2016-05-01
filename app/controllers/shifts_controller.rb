@@ -14,7 +14,7 @@ class ShiftsController < ApplicationController
 		@jobs = @shift.shift_jobs
 		@shifts = @assignment.employee.shifts.paginate(page: params[:page]).per_page(5) 
 		@upcoming_shifts = @assignment.employee.shifts.upcoming
-		@upcoming_shifts = Shift.upcoming.by_store
+		#@store_shifts = @shift.assignment.store.store_shifts
 		@shift_jobs = @shift.shift_jobs
 	end
 
@@ -37,7 +37,7 @@ class ShiftsController < ApplicationController
 				@jobs = @shift.jobs
 				@assignment = @shift.assignment
 				@shifts = @assignment.employee.shifts.paginate(page: params[:page]).per_page(5)
-				#@shifts = @shift.assignment.store.shifts.paginate(page: params[:page]).per_page(5) 
+				@store_shifts = @shift.assignment.store.shifts
 				@upcoming_shifts = @assignment.employee.shifts.upcoming
 				format.js
 			else
