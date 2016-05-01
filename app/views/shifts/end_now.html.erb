@@ -1,6 +1,6 @@
-<% @shift.start_now %>
+<% @shift.end_now %>
 
-<h3> Clocked in at <%=@shift.start_time.strftime("%r")%> </h3>
+<h3> Clocked out at <%=@shift.end_time.strftime("%r")%> </h3>
 <br/>
 
 <%= link_to home_path,class: 'button radius' do %>
