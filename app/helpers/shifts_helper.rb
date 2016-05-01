@@ -8,4 +8,8 @@ module ShiftsHelper
 		end
 	end
 
+	def get_complete_options
+		Shift.for_store(current_user.employee.current_assignment.store_id).past.incomplete.all.to_a.map{ |a| [ "#{a.assignment.employee.proper_name}, #{a.date.strftime("%m/%d/%y")}, #{a.start_time.strftime("%r")} "]}
+	end
+
 end

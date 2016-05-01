@@ -13,7 +13,7 @@
   <div class="small-8 columns">
     <!-- primary partial gets displayed here in main div -->
     <%= render partial: "shifts_to_complete" %>
-    <%= link_to complete_path,class: 'button radius' do %>
+    <%= link_to complete_path(@incomplete_shifts.first),class: 'button radius' do %>
         &nbsp;<%= "Quick Complete Shifts" %>
     <% end %>
     <%= render partial: "upcoming_shifts" %>

@@ -1,0 +1,1 @@
+<h4> Your next shift is on <%= current_user.employee.current_assignment.shifts.upcoming.first.date.strftime("%m/%d/%y")%> from <%= current_user.employee.current_assignment.shifts.upcoming.first.start_time.strftime("%r") %> - <%= current_user.employee.current_assignment.shifts.upcoming.first.end_time.strftime("%r") %></h4> 

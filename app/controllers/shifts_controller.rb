@@ -54,7 +54,7 @@ class ShiftsController < ApplicationController
 				if current_user.employee.role == "admin"
 					format.html {redirect_to shift_path(@shift), notice: "Sucessfully updated shift on #{@shift.date} for #{@shift.assignment.store.name}."}
 				else
-					format.html {redirect_to home_path, notice: "Sucessfully completed shift on #{@shift.date} for #{@shift.assignment.employee.name}."}
+					format.html {redirect_to complete_path, notice: "Sucessfully completed shift on #{@shift.date} for #{@shift.assignment.employee.name}."}
 				end
 				format.json { head :no_content }
 				@jobs = @shift.shift_jobs
@@ -79,16 +79,16 @@ class ShiftsController < ApplicationController
 	end
 
 	def start_now
-		@shift.start_time = Time.now
+		@shift = @shift.start_now
 	end
 
 	def end_now
-		@shift.end_time = Time.now
+		@shift = @shift.end_now
 	end
 
 	def complete
+		@shift = Shift.incomplete.for_store(current_user.employee.current_assignment.store.id).first
 		@incomplete_shifts = Shift.for_store(current_user.employee.current_assignment.store_id).past.incomplete
-
 	end
 
 	
