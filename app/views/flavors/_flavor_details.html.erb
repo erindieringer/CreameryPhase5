@@ -11,11 +11,12 @@
 		</p>
 	<%end%>
 
+<% if logged_in? && current_user.employee.role == 'admin' %>	
 	<% unless @store_flavors.empty? || !@flavor.active %>
-		
 		<%= link_to(new_store_flavor_path(flavor_id: @flavor.id), id: 'new_storeflavor_link', class: 'button tiny radius', remote: true) do %>
 		  Assign to New Store
 		<% end %>
 	<%end%>
+<%end%>
 
 </div>

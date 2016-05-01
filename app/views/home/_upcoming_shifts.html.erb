@@ -10,7 +10,7 @@
           </tr>
         </thead>
         <tbody>
-          <% current_user.employee.current_assignment.shifts.upcoming.each do |shift| %>
+          <% current_user.employee.current_assignment.shifts.upcoming.chronological.each do |shift| %>
             <tr>
               <td>
                 <%= shift.date.strftime("%m/%d/%y") %>

@@ -23,6 +23,7 @@ class StoreFlavorsController < ApplicationController
 	      		format.json { render action: 'show', status: :created, location: @store_flavor }
 	      		@flavor = @store_flavor.flavor
 	      		@store_flavors = @flavor.store_flavors
+	      		@current_flavors = @store_flavor.flavor.store_flavors
 	      		format.js
 	      	else
 	      		format.html {render action: 'new'}
@@ -35,7 +36,7 @@ class StoreFlavorsController < ApplicationController
 	def update
 		respond_to do |format|
 			if @store_flavor.update(store_flavor_params)
-	      		format.html {redirect_to store_flavor_path, notice: "Successfully updated #{@store_flavor}."}
+	      		format.html {redirect_to store_flavor_path, notice: "Successfully updated #{@store_flavor} "}
 	      		format.json { head :no_content }
 	      		format.js
 	    	else
@@ -51,7 +52,7 @@ class StoreFlavorsController < ApplicationController
 		@flavor = @store_flavor.flavor
 		@store_flavor.destroy
 		respond_to do |format|
-			format.html {redirect_to flavor_path(@flavor), notice: "Sucessfully destroyed #{@flavor.name}."}
+			format.html {redirect_to flavor_path(@flavor), notice: "Sucessfully destroyed #{@flavor.name} from #{@store_flavor.store.name}."}
 			format.json { head :no_content }
 		end
 	end

@@ -4,7 +4,9 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>&nbsp;</th>
+      <% if logged_in? && current_user.employee.role == "admin" %>
+        <th>&nbsp;</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -12,9 +14,11 @@
       <% @flavor.store_flavors.each do |store_flavor| %>
         <tr>
           <td><%= link_to store_flavor.store.name, store_path(store_flavor.store) %></td>
-          <td>
-              <%= link_to(image_tag("remove.png"), store_flavor_path(store_flavor), confirm: 'Are you sure you wish to delete this information?', method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' })  %>
-          </td>
+          <% if logged_in? && current_user.employee.role == "admin" %>
+            <td>
+                <%= link_to(image_tag("remove.png"), store_flavor_path(store_flavor), confirm: 'Are you sure you wish to delete this information?', method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' })  %>
+            </td>
+          <%end%>
         </tr>
         <% end %>
       <% end %>
