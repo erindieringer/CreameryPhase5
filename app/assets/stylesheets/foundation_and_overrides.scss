@@ -34,9 +34,10 @@
 // $row-width: rem-calc(1000);
 // $column-gutter: rem-calc(30);
 // $total-columns: 12;
+$green: #BCF5A9;
 
 // We use these to control various global styles
- $body-bg: #fff;
+ $body-bg: $green;
 // $body-font-color: #222;
 $font-family-sans-serif: "Comic Sans MS", Helvetica, Roboto, Arial, sans-serif;
  $body-font-family: $font-family-sans-serif;

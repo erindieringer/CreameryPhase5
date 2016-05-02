@@ -26,6 +26,7 @@ class ShiftsController < ApplicationController
 	def edit
 		@shift.shift_jobs.build
 		@shift_jobs = @shift.shift_jobs
+		@shift.date = humanize_date @shift.date
 	end
 
 	def create
@@ -36,7 +37,7 @@ class ShiftsController < ApplicationController
 				format.json { render action: 'show', status: :created, location: @shift }
 				@jobs = @shift.jobs
 				@assignment = @shift.assignment
-				@shifts = @assignment.employee.shifts.paginate(page: params[:page]).per_page(5)
+				@shifts = @shift.assignment.employee.shifts.paginate(page: params[:page]).per_page(5)
 				@store_shifts = @shift.assignment.store.shifts
 				@upcoming_shifts = @shift.assignment.employee.current_assignment.shifts.upcoming.chronological unless @shift.assignment.employee.current_assignment.nil?
 				format.js
