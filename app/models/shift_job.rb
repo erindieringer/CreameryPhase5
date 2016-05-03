@@ -8,6 +8,7 @@ class ShiftJob < ActiveRecord::Base
   validate :shift_is_active_in_system, on: :create
   validate :job_is_active_in_system, on: :create
 
+  
   private  
   
   def shift_is_active_in_system

@@ -6,6 +6,8 @@ class HomeController < ApplicationController
     	@todays_shifts = Shift.for_store(current_user.employee.current_assignment.store_id).for_next_days(0).paginate(page: params[:page]).per_page(5)
       @current_flavors = current_user.employee.current_assignment.store.store_flavors
       @shift = @incomplete_shifts.first
+    else
+      @incomplete_shifts = Shift.incomplete.all
     end
     @active_flavors = Flavor.active.alphabetical.paginate(page: params[:page]).per_page(10)
     @active_stores = Store.active.alphabetical

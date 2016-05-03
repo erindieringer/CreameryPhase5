@@ -1,22 +1,25 @@
+ <% @incomplete_shifts = Shift.chronological.for_store(current_user.employee.current_assignment.store_id).past.incomplete.paginate(page: params[:page]).per_page(5) %>
 <div class="row">
   <div class="small-12 columns">
     <%if !current_user.employee.current_assignment.shifts.upcoming.for_next_days(0).empty? %>
         <%= render partial: "clock_in" %>
     <% end %>
-    <h2> Hi <%=current_user.employee.first_name %>! You have <b><%=@incomplete_shifts.count %></b> shifts to complete </h2>
+    <h2> Hi <%=current_user.employee.first_name %>! </h2>
+    <%= render partial: "home/shifts_to_complete" %>
+    <% unless @incomplete_shifts.nil? %>
+      <%= link_to complete_path(@incomplete_shifts.first),class: 'button radius' do %>
+          &nbsp;<%= "Quick Complete Shifts" %>
+      <% end %>
   </div>
 
 </div>
 
 <div class="row">
-  <div class="small-7 columns">
+  <div class="small-6 columns">
     <!-- primary partial gets displayed here in main div -->
-    <%= render partial: "shifts_to_complete" %>
-    <%= link_to complete_path(@incomplete_shifts.first),class: 'button radius' do %>
-        &nbsp;<%= "Quick Complete Shifts" %>
+
     <% end %>
-    <%= render partial: "upcoming_shifts" %>
-    <%= render partial: "hours_worked" %>
+  <%= render partial: "home/todays_flavors" %>
     <%= link_to employee_path(current_user.employee_id),class: 'button radius' do %>
         &nbsp;<%= "View My Personal Information" %>
     <% end %>
@@ -25,12 +28,13 @@
 
   </div>
 
-  <div class="small-5 columns">
-    <%= render partial: "todays_shifts" %>
+  <div class="small-6 columns">
+    <%= render partial: "home/todays_shifts" %>
     <%= link_to new_shift_path,class: 'button radius' do %>
         &nbsp;<%= "Quick Add Shifts" %>
     <% end %>
-    <%= render partial: "todays_flavors" %>
+    <%= render partial: "home/upcoming_shifts" %>
+    <%= render partial: "home/hours_worked" %>
 
   </div>
 </div>

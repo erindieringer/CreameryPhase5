@@ -1,6 +1,5 @@
-<div id = "jobs_list">
-<% unless @upcoming_shifts.nil? %>
-<% unless @upcoming_shifts.include? @shift %>   
+<% @jobs = @shift.shift_jobs %>
+<div id = "jobs_list"> 
     <% if @jobs.empty? %>
       <p><em>There are no assigned jobs at this time</em></p>
     <% else %>
@@ -29,7 +28,6 @@
         <% end %>
       </tbody>
     </table>
-    <%#= will_paginate @jobs, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
     <%end%>
 <% unless current_user.employee.role == "employee" %>
     <%= link_to(new_shift_job_path(shift_id: @shift.id),id: 'new_shiftjob_link', class: 'button tiny radius', remote: true) do %>
@@ -38,5 +36,3 @@
 <% end %>
 
   </div>
-<% end %>
-<% end %>

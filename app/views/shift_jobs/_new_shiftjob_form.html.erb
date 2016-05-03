@@ -1,12 +1,19 @@
-<div id = "new_shift_job">
-<%= simple_form_for @shift_job, html: { :class => 'form-horizontal' }, remote: true do |f| %>
-  
-  <%= f.input :job_id, label: "Job", collection: Job.active.all, input_html: {class: "avg"} %>
-  <%= f.input :shift_id, as: :hidden, input_html: { value: params[:shift_id] } %>
-  
-  <div class="form-actions">
-    <%= f.submit nil, class: 'button tiny radius' %>
-    <%= link_to 'Cancel', shift_path(params[:shift_id]), class: 'button tiny radius alert' %>
-  </div>
-<% end %>
-  </div>
+
+	<div id = "new_shift_job">
+	<%= simple_nested_form_for @shift_job, html: { :class => 'form-horizontal' }, remote: true do |f| %>
+	  
+	  <%= f.input :job_id, label: "Job", collection: Job.active.all, input_html: {class: "avg"} %>
+	  <%= f.input :shift_id, as: :hidden, input_html: { value: params[:shift_id] } %>
+	  <%#= f.link_to_remove("x") %>
+	   <%#= link_to(new_shift_job_path(shift_id: @shift_job.shift_id), id: 'new_shiftjob_link', class: 'button tiny radius warning', remote: true) do %>
+                
+	  <div class="form-actions">
+	   	<%= f.submit nil, class: 'button tiny radius' %>
+	   	<% if current_user.employee.role == "manager"%>
+	    	<%= link_to 'Cancel', home_path, class: 'button tiny radius alert' %>
+	    <%else%>
+	    	<%= link_to 'Cancel', shift_path(params[:shift_id]), class: 'button tiny radius alert' %>
+	    <%end%>
+	  </div>
+	<% end %>
+	  </div>

@@ -36,7 +36,7 @@ class ShiftsController < ApplicationController
 			if @shift.save
 				format.html {redirect_to new_shift_path, notice: "Sucessfully created new shift for #{@shift.assignment.employee.name}  on #{@shift.date} at #{@shift.assignment.store.name}."}
 				format.json { render action: 'show', status: :created, location: @shift }
-				@jobs = @shift.jobs
+				@jobs = @shift.shift_jobs
 				@assignment = @shift.assignment
 				@shifts = @shift.assignment.employee.shifts.paginate(page: params[:page]).per_page(5)
 				@store_shifts = @shift.assignment.store.shifts
