@@ -1,5 +1,5 @@
 class ShiftsController < ApplicationController
-	before_action :set_shift, only: [:show, :edit, :update, :destroy]#, :show_start_now, :show_end_now]
+	before_action :set_shift, only: [:show, :edit, :update, :destroy]
 	before_action :check_login
   	authorize_resource
 
@@ -21,13 +21,13 @@ class ShiftsController < ApplicationController
 	def new
 		@shift = Shift.new
 		@shift.shift_jobs.build
-		@shift.date = humanize_date @shift.date
+		#@shift.date = humanize_date @shift.date
 	end
 
 	def edit
 		@shift.shift_jobs.build
 		@shift_jobs = @shift.shift_jobs
-		@shift.date = humanize_date @shift.date
+		#@shift.date = humanize_date @shift.date
 	end
 
 	def create

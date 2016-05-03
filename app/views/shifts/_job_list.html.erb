@@ -23,7 +23,7 @@
 
     <%end%>
 </div>
-<% unless current_user.employee.role == "employee" %>
+<% unless current_user.employee.role == "employee" || (@shift.date > Date.today) %>
     <%= link_to(new_shift_job_path(shift_id: @shift.id),id: 'new_shiftjob_link', class: 'button tiny radius', remote: true) do %>
     Add New Job
   <% end %>

@@ -6,42 +6,45 @@
         <li><%= link_to "Home", home_path %></li>
 
         <!-- options for stores -->
+     <% if logged_in? && current_user.employee.role == "admin"%>
         <li class="has-dropdown">
           <%= link_to "Stores", stores_path %>
-            <% if logged_in? && current_user.employee.role == "admin"%>
               <ul class="dropdown">
                 <li><%= link_to "Store List", stores_path %></li>
                 <li><%= link_to "Add a Store", new_store_path %></li>
-              </ul>
-
-              <%end %>
+              </ul> 
             </li>
+    <% else %>
+      <li><%= link_to "Stores", stores_path %></li>
+    <%end%>
 
-    <% if logged_in? %>
-      <% if current_user.employee.role != "employee"%>
+
+
+<% if logged_in? %>
+      <% if current_user.employee.role == "admin"%>
         <!-- options for employees -->
         <li class="has-dropdown">
           <%= link_to "Employees", employees_path %>
-            <% if current_user.employee.role== "admin"%>
                 <ul class="dropdown">
                   <li><%= link_to "Employee List", employees_path %></li>
                   <li><%= link_to "Add an Employee", new_employee_path %></li>
                 </ul>
-            <%end%>
         </li>
+      <%elsif current_user.employee.role == "manager"%>
+         <li><%= link_to "Employees", employees_path %></li>
       <%end%>
 
         <!-- options for assignments -->
-       <% if current_user.employee.role != "employee"%>
+       <% if current_user.employee.role == "admin"%>
         <li class="has-dropdown">
           <%= link_to "Assignments", assignments_path %>
-          <% if current_user.employee.role == "admin"%>
             <ul class="dropdown">
               <li><%= link_to "Assignment List", assignments_path %></li>
               <li><%= link_to "Create New Assignment", new_assignment_path %></li>
             </ul>
-          <%end%>
-        </li>
+          </li>
+         <%elsif current_user.employee.role == "manager"%>
+          <li><%= link_to "Assignments", assignments_path %></li>
         <%end%>
         
         <% if current_user.employee.role != "employee"%>
@@ -56,29 +59,30 @@
         <%end%>
 
         <!-- options for jobs -->
-        <% if current_user.employee.role != "employee"%>
+        <% if current_user.employee.role == "admin"%>
           <li class="has-dropdown">
             <%= link_to "Jobs", jobs_path %>
-            <% if current_user.employee.role == "admin"%> 
               <ul class="dropdown">
                 <li><%= link_to "Jobs List", jobs_path %></li>
                 <li><%= link_to "Create New Job", new_job_path %></li>
               </ul>
-            <%end%>
           </li>
-        <%end%>
+           <%elsif current_user.employee.role == "manager"%>
+              <li><%= link_to "Jobs", jobs_path %></li>
+            <%end%>
 
         <!-- options for flavors -->
+       <% if current_user.employee.role == "admin"%> 
         <li class="has-dropdown">
-          <%= link_to "Flavors", flavors_path %>
-          <% if current_user.employee.role == "admin"%>          
+          <%= link_to "Flavors", flavors_path %>         
             <ul class="dropdown">
               <li><%= link_to "Flavors List", flavors_path %></li>
               <li><%= link_to "Create New Flavor", new_flavor_path %></li>
             </ul>
-        <%end%>
         </li>
-
+        <%else%>
+            <li><%= link_to "Flavors", flavors_path %></li>
+        <%end%>
       </ul>
 
           <ul class="right">

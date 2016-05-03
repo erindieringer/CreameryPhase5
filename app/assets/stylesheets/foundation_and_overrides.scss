@@ -1035,7 +1035,7 @@ $panel-bg: $light-green; //scale-color(#E1F7E7, $lightness: -5%);
 
 // These control the background color for the table and even rows
  //$table-bg: #BCF5A9;
-// $table-even-row-bg: #f9f9f9  ;
+ $table-even-row-bg: $light-green  ;
 
 // These control the table cell border style
 // $table-border-style: solid;
@@ -1043,7 +1043,7 @@ $panel-bg: $light-green; //scale-color(#E1F7E7, $lightness: -5%);
 // $table-border-color: #ddd;
 
 // These control the table head styles
-// $table-head-bg: #f5f5f5  ;
+ $table-head-bg: $light-green ;
 // $table-head-font-size: rem-calc(14);
  $table-head-font-color: $brown;
 
@@ -1372,7 +1372,7 @@ h2 {
 	margin-right:15%;
 }
 
-table clock_in {
+table.clock_in {
 	border: none;
 	background-color: $green;
 }

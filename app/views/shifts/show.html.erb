@@ -1,16 +1,10 @@
-<% if @shift.date = Date.today %>
-	<div class="row">
-  		<div class="small-12 columns">
-  		</div>
-  	</div>
- <%end%>
 
 <div class="row">
   <div class="small-7 columns">
     <%= render partial: "shift_details" %>
   </div>
     <div class="small-5 columns">
-    <%= render partial: "job_list" unless @shift.date >=  Date.current%>
+    <%= render partial: "job_list" %>
     <%= render partial: "assignment_details" %>
   </div>
 
