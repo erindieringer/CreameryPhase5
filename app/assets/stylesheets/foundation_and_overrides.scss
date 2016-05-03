@@ -1372,8 +1372,9 @@ h2 {
 	margin-right:15%;
 }
 
-table.clock_in {
+table clock_in {
 	border: none;
+	background-color: $green;
 }
 
 @import 'foundation';
