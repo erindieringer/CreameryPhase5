@@ -1,9 +1,9 @@
 
 <%# unless @employee.nil?%>  
 <%# unless @employee.active == false %>  
-<% unless @employee.current_assignment.nil? || @upcoming_shifts.empty? %>
+<% unless @employee.current_assignment.nil? || @past_shifts.empty? %>
 <div id="shifts" >
-  <h3>Upcoming Shifts</h3>
+  <h3>Past Shifts</h3>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @upcoming_shifts.each do |shift| %>
+        <% @past_shifts.each do |shift| %>
           <tr>
             <td>
               <%= shift.date.strftime("%m/%d/%y") %>
@@ -28,18 +28,14 @@
         <% end %>
       </tbody>
     </table>
-    
+     <%= will_paginate @past_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
 
   <% else%>
-    <em>No Upcoming Shifts <em>
+    <em>No Past Shifts <em>
   <% end %>
   <br/>
   <br/>
-<% unless current_user.employee.role == "employee" || @employee.current_assignment.nil? %>
-    <%#= link_to(new_shift_path(assignment_id: @employee.current_assignment.id), id: 'new_shift_link', class: 'button tiny radius', remote: true) do %>
-    
-    <%# end %>
-    <% end %>
+
   <%# end %>
 <%# end %>
 </div>

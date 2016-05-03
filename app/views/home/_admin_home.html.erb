@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="small-12 columns">
+  	<h2> Welcome <%=current_user.employee.first_name %>! </h2>
+  </div>
+ </div>
+
+ <div class="row">
+  <div class="small-6 columns">
+  		<%= render partial: "store_list" %>
+  		<%= render partial: "current_employees", locals: {role: "manager"} %>
+  	</div>
+ 
+
+  <div class="small-6 columns">
+  	<%= render partial: "daily_shifts" %>
+  	<%= render partial: "current_employees", locals: {role: "employee"} %>
+
+  </div>
+ </div>

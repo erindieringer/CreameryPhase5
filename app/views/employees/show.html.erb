@@ -1,11 +1,13 @@
 <% if logged_in? && (current_user.employee.role == "admin" || current_user.employee.role == "manager" || (current_user.employee.role == "employee" && current_user.employee_id == @employee.id))%>	
 	<div class="row">
-	  <div class="small-7 columns">
+	  <div class="small-6 columns">
 	    <%= render partial: "employee_details" %>
-	  </div>
-	  <div class="small-5 columns">
+	    <br/>
 	    <%= render partial: "assignment_history" unless @assignments.empty?%>
-	    <%= render partial: "upcoming_shifts"   %>
+	  </div>
+	  <div class="small-6 columns">
+	    <%= render partial: "upcoming_shifts"  unless @employee.nil? %>
+	    <%= render partial: "past_shifts"  unless @employee.nil? %>
 
 	  </div>
 	</div>

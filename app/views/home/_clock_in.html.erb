@@ -1,11 +1,17 @@
 <% @start_time = current_user.employee.current_assignment.shifts.upcoming.first.start_time.strftime("%r") %>
-<h4> Clock in for today's shift at <%= @start_time%> </h4> 
 
-<%= link_to start_now_path(current_user.employee.current_assignment.shifts.upcoming.first),class: 'button radius' do %>
-        &nbsp;<%= "Start Shift" %>
-    <% end %>
-
-	<%= link_to end_now_path(current_user.employee.current_assignment.shifts.upcoming.first),class: 'button radius' do %>
-	        &nbsp;<%= "End Shift" %>
-	    <% end %>
-
+		<table width = "1000">
+			<th>
+				<h4> Clock in for today's shift at <%= @start_time%> </h4> 
+			</th>
+			<th>
+				<%= link_to start_now_path(current_user.employee.current_assignment.shifts.upcoming.first),class: 'large button radius green' do %>
+		        &nbsp;<%= "Start Shift" %>
+		    	<% end %>
+		    </th>
+		    <th>
+				<%= link_to end_now_path(current_user.employee.current_assignment.shifts.upcoming.first),class: 'large button radius alert' do %>
+			        &nbsp;<%= "End Shift" %>
+			    <% end %>
+			 </th>
+		</table>

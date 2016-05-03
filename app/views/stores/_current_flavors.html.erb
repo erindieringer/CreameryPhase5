@@ -1,21 +1,32 @@
- <div id = "current_flavors" >
- <%unless !@store.active %>
+ <div id ="current_flavors2" >
+ <%unless @store.nil? || @store.active == false%>
 	<% unless @current_flavors.empty? %>
 	  <div class="panel callout radius">
 	    <h3>Current Flavors for <%= @store.name %> </h3>
 	    <ul>
 	      <% @current_flavors.each do |flavor| %>
-	      	<% if flavor.flavor.active == true && logged_in? && current_user.employee.role == "admin" || current_user.employee.role == "manager" %>
-	        	<li><%= link_to flavor.flavor.name, flavor_path(flavor.flavor) %> </li>
+	      	<% if flavor.flavor.active == true &%>
+	      		<% if logged_in? && (current_user.employee.role == "admin" || current_user.employee.role == "manager") %>
+	        			<li><%= link_to flavor.flavor.name, flavor_path(flavor.flavor) %> 
+	        				<% if current_user.employee.role == "manager" && @store.id == current_user.employee.current_assignment.store_id || current_user.employee.role == "admin"  %>
+	        					<%= link_to(image_tag("remove.png"), store_flavor_path(flavor), confirm: 'Are you sure you wish to delete this information?', method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' })  %> </li>
+	        			<%else%>
+	        				</li>
+	        			<%end%>
+	        	<%end%>
 	        <% elsif flavor.flavor.active == true %>
 	        	<li> <%= flavor.flavor.name%> </li> 
 	       	 <% end %>
         <% end %>
 	    </ul>
 	  </div>
-	  	<%#= link_to(new_store_flavor_path(store_id: @store.id), id: 'new_storeflavor_link', class: 'button tiny radius', remote: true) do %>
+	  <% if logged_in? && current_user.employee.role == "manager" && @store.id == current_user.employee.current_assignment.store_id || current_user.employee.role == "admin"  %>
+	  		<%= link_to(new_store_flavor_path(store_id: @store.id), id: 'new_storeflavor_link', class: 'button tiny radius', remote: true) do %>
+	  		Add Flavor
+		<% end %>
+	<% end %>	
+	<% end %>
 	<% end %>
 
-	<% end %>
 
 </div>

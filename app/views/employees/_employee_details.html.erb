@@ -1,38 +1,38 @@
 <h3>Employee Details</h3>
-<p>
-  <h4>
-    Name: <%= @employee.name %>
-  </h4>
-</p>
+<div class="panel callout radius">
 
-<p>
-  <b>SSN:</b> <%= @employee.ssn %>
-</p>
+     <h5> Name: <%= @employee.name %></h5>
+    <br/>
 
-<p>
-  <b>Date of Birth:</b> <%= @employee.date_of_birth.strftime("%m/%d/%y") %>
-</p>
+  <p>
+    <b>SSN:</b> <%= @employee.ssn %>
+  </p>
 
-<p>
-  <b>Phone:</b> <%= number_to_phone @employee.phone unless @employee.phone.nil? %>
-</p>
+  <p>
+    <b>Date of Birth:</b> <%= @employee.date_of_birth.strftime("%m/%d/%y") %>
+  </p>
 
-<p>
-  <b>Role:</b> <%= @employee.role.capitalize %>
-</p>
+  <p>
+    <b>Phone:</b> <%= number_to_phone @employee.phone unless @employee.phone.nil? %>
+  </p>
 
-<p>
-  <b>Active:</b> <%= @employee.active ? "Yes" : "No" %>
-</p>
+  <p>
+    <b>Role:</b> <%= @employee.role.capitalize %>
+  </p>
 
-<p>
-	<b>User in System:</b> <%= @employee.user ? "Yes" : "No" %>
-</p>
+  <p>
+    <b>Active:</b> <%= @employee.active ? "Yes" : "No" %>
+  </p>
 
-<% if @employee.user %>
-	
-	<p>
-  		<b>Email:</b> <%= @employee.user.email %>
-	</p>
+  <p>
+  	<b>User in System:</b> <%= @employee.user ? "Yes" : "No" %>
+  </p>
 
-<%end%>
+  <% if @employee.user %>
+  	
+  	<p>
+    		<b>Email:</b> <%= @employee.user.email %>
+  	</p>
+
+  <%end%>
+</div>

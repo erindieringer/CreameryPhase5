@@ -4,6 +4,6 @@
 	<%= render :partial => 'employee_home' %>
 <% elsif current_user.employee.role == "manager"%>
 	<%= render :partial => 'manager_home' %>
-<% else %>
-	<%= render :partial => 'general_home' %>
+<% elsif current_user.employee.role == "admin"  %>
+	<%= render :partial => 'admin_home' %>
 <% end %>

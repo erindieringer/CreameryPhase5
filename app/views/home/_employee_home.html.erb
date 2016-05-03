@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="small-10 columns">
+  <div class="small-12 columns">
     <%if !current_user.employee.current_assignment.shifts.upcoming.for_next_days(0).nil? %>
         <%= render partial: "clock_in" %>
     <%else%>
@@ -8,9 +8,11 @@
   </div>
 
 </div>
+<div class="row">
+  </div>
 
 <div class="row">
-  <div class="small-5 columns">
+  <div class="small-4 columns">
     <!-- primary partial gets displayed here in main div -->
     <%= render partial: "current_assignment" %>
     <!-- sometimes we want another partial below -->

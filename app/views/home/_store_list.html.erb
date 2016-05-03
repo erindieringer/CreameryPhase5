@@ -1,0 +1,29 @@
+<% if @active_stores.empty? %>
+  <p><em>There are no active stores at this time.</em></p>
+<% else %>
+  <h3>Current Stores</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Store Name</th>
+        <th>Staff Count</th>
+        <th>Current Flavors</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @active_stores.each do |store| %>
+        <tr>
+          <td><%= link_to store.name, store_path(store) %></td>
+          <td class="centered"><%= store.assignments.current.count %></td>      
+          <td>
+              <% store.store_flavors.each do |flavor| %>
+                <li> <%= link_to flavor.flavor.name, flavor_path(flavor.flavor_id) %> </li>
+              <%end%>
+  
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @active_stores, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %> <p>&nbsp;</p>
+<% end %>

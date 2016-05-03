@@ -1,1 +1,6 @@
 $('#new_shift_link').hide().after('<%= j render("new_shift_form") %>');
+$(function() {
+  $(".datepicker").datepicker({
+    format: 'mm/dd/YYYY'
+  });
+ });

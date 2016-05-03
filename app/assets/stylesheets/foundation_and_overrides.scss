@@ -27,7 +27,7 @@
 // $include-html-global-classes: $include-html-classes;
 
 // Grid
-
+$brown: #944C1F;
 // $include-html-grid-classes: $include-html-classes;
 // $include-xl-html-grid-classes: false;
 
@@ -35,10 +35,12 @@
 // $column-gutter: rem-calc(30);
 // $total-columns: 12;
 $green: #BCF5A9;
+$bkgd: #F7F5F6;
+$light-green: #F2FAF0;
 
 // We use these to control various global styles
- $body-bg: $green;
-// $body-font-color: #222;
+ //$body-bg: $bkgd;
+ $body-font-color: $brown;
 $font-family-sans-serif: "Comic Sans MS", Helvetica, Roboto, Arial, sans-serif;
  $body-font-family: $font-family-sans-serif;
 // $body-font-weight: normal;
@@ -60,6 +62,7 @@ $font-family-sans-serif: "Comic Sans MS", Helvetica, Roboto, Arial, sans-serif;
 // $warning-color: #f08a24;
 // $info-color: #a0d3e8;
 $green: #BCF5A9;
+$brown: #944C1F;
 
 // We use these to make sure border radius matches unless we want it different.
 // $global-radius: 3px;
@@ -119,7 +122,7 @@ $green: #BCF5A9;
 // $header-font-family: $body-font-family;
 // $header-font-weight: 300;
 // $header-font-style: normal;
-// $header-font-color: #222;
+ $header-font-color: $brown;
 // $header-line-height: 1.4;
 // $header-top-margin: .2rem;
 // $header-bottom-margin: .5rem;
@@ -135,14 +138,14 @@ $green: #BCF5A9;
 
 // These control how subheaders are styled.
 // $subheader-line-height: 1.4;
-// $subheader-font-color: scale-color($header-font-color, $lightness: 35%);
+ $subheader-font-color: scale-color($brown, $lightness: 35%);
 // $subheader-font-weight: 300;
 // $subheader-top-margin: .2rem;
 // $subheader-bottom-margin: .5rem;
 
 // A general <small> styling
 // $small-font-size: 60%;
-// $small-font-color: scale-color($header-font-color, $lightness: 35%);
+ $small-font-color: scale-color($brown, $lightness: 35%);
 
 // We use these to style paragraphs
 // $paragraph-font-family: inherit;
@@ -159,11 +162,11 @@ $green: #BCF5A9;
 // $code-color: scale-color($alert-color, $lightness: -27%);
 // $code-font-family: Consolas, 'Liberation Mono', Courier, monospace;
 // $code-font-weight: bold;
-
+$pink: #F294B6;
 // We use these to style anchors
 // $anchor-text-decoration: none;
-// $anchor-font-color: $primary-color;
-// $anchor-font-color-hover: scale-color($primary-color, $lightness: -14%);
+ $anchor-font-color: $pink;
+ $anchor-font-color-hover: scale-color($pink, $lightness: -14%);
 
 // We use these to style the <hr> element
 // $hr-border-width: 1px;
@@ -739,13 +742,13 @@ $green: #BCF5A9;
 // We use these to set the list-item properties
 // $pagination-li-float: $default-float;
 // $pagination-li-height: rem-calc(24);
-// $pagination-li-font-color: #222;
+ $pagination-li-font-color: $brown;
 // $pagination-li-font-size: rem-calc(14);
 // $pagination-li-margin: rem-calc(5);
 
 // We use these for the pagination anchor links
 // $pagination-link-pad: rem-calc(1 10 1);
-// $pagination-link-font-color: #999;
+ $pagination-link-font-color: $brown;
 // $pagination-link-active-bg: scale-color(#fff, $lightness: -10%);
 
 // We use these for disabled anchor links
@@ -755,7 +758,7 @@ $green: #BCF5A9;
 
 // We use these for currently selected anchor links
 // $pagination-link-current-background: $primary-color;
-// $pagination-link-current-font-color: #fff;
+ //$pagination-link-current-font-color: $brown;
 // $pagination-link-current-font-weight: bold;
 // $pagination-link-current-cursor: default;
 // $pagination-link-current-active-bg: $primary-color;
@@ -765,7 +768,7 @@ $green: #BCF5A9;
 // $include-html-panel-classes: $include-html-classes;
 
 // We use these to control the background and border styles
-$panel-bg: scale-color(#E1F7E7, $lightness: -5%);
+$panel-bg: $light-green; //scale-color(#E1F7E7, $lightness: -5%);
 // $panel-border-style: solid;
 // $panel-border-size: 1px;
 
@@ -778,12 +781,12 @@ $panel-bg: scale-color(#E1F7E7, $lightness: -5%);
 // $panel-padding: rem-calc(20);
 
 // We use these to set default font colors
-// $panel-font-color: #333;
+ $panel-font-color: $brown;
 // $panel-font-color-alt: #fff;
 
 // $panel-header-adjust: true;
-// $callout-panel-link-color: $primary-color;
-
+ $callout-panel-link-color: $pink;
+ $callout-panel-bg: $light-green;
 // Pricing Tables
 
 // $include-html-pricing-classes: $include-html-classes;
@@ -1031,7 +1034,7 @@ $panel-bg: scale-color(#E1F7E7, $lightness: -5%);
 // $include-html-table-classes: $include-html-classes;
 
 // These control the background color for the table and even rows
- $table-bg: #BCF5A9;
+ //$table-bg: #BCF5A9;
 // $table-even-row-bg: #f9f9f9  ;
 
 // These control the table cell border style
@@ -1042,14 +1045,15 @@ $panel-bg: scale-color(#E1F7E7, $lightness: -5%);
 // These control the table head styles
 // $table-head-bg: #f5f5f5  ;
 // $table-head-font-size: rem-calc(14);
-// $table-head-font-color: #222;
+ $table-head-font-color: $brown;
+
 // $table-head-font-weight: bold;
 // $table-head-padding: rem-calc(8 10 10);
 
 // These control the row padding and font styles
 // $table-row-padding: rem-calc(9 10);
 // $table-row-font-size: rem-calc(14);
-// $table-row-font-color: #222;
+ $table-row-font-color: $brown;
 // $table-line-height: rem-calc(18);
 
 // These are for controlling the display and margin of tables
@@ -1126,7 +1130,7 @@ $panel-bg: scale-color(#E1F7E7, $lightness: -5%);
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-$topbar-bg-color: #BCF5A9;
+$topbar-bg-color: $green;
 $topbar-bg: $topbar-bg-color;
 
 // Height and margin
@@ -1138,41 +1142,42 @@ $topbar-bg: $topbar-bg-color;
 // $topbar-title-font-size: rem-calc(17);
 
 // Style the top bar dropdown elements
- $topbar-dropdown-bg: $topbar-bg-color;
-// $topbar-dropdown-link-color: #fff;
-// $topbar-dropdown-link-bg: #333;
+ $topbar-dropdown-bg: $green;
+ $topbar-dropdown-link-color: $brown;
+ $topbar-dropdown-link-bg: $topbar-bg-color;
+ $topbar-dropdown-link-bg-hover: scale-color($topbar-bg-color, $lightness: 25%);;
 // $topbar-dropdown-link-weight: normal;
 // $topbar-dropdown-toggle-size: 5px;
 // $topbar-dropdown-toggle-color: #fff;
 // $topbar-dropdown-toggle-alpha: 0.4;
 
 // Set the link colors and styles for top-level nav
- $topbar-link-color:$topbar-bg-color;
-// $topbar-link-color-hover: #fff;
-// $topbar-link-color-active: #fff;
-// $topbar-link-color-active-hover: #fff;
+ $topbar-link-color:$brown;
+ $topbar-link-color-hover: $brown;
+ $topbar-link-color-active: $topbar-bg-color;
+ $topbar-link-color-active-hover: $topbar-bg-color;
 // $topbar-link-weight: normal;
 // $topbar-link-font-size: rem-calc(13);
-// $topbar-link-hover-lightness: -10%; // Darken by 10%
-// $topbar-link-bg-hover: #272727  ;
-// $topbar-link-bg-active: $primary-color;
-// $topbar-link-bg-active-hover: scale-color($primary-color, $lightness: -14%);
+ $topbar-link-hover-lightness: -10%; // Darken by 10%
+ $topbar-link-bg-hover: scale-color($topbar-bg-color, $lightness: 25%); ;
+ $topbar-link-bg-active: $brown;
+ $topbar-link-bg-active-hover: scale-color($topbar-bg-color, $lightness: 25%);
 // $topbar-link-font-family: $body-font-family;
 
 // $topbar-button-font-size: 0.75rem;
 
- $topbar-dropdown-label-color: #BCF5A9;
+ $topbar-dropdown-label-color: $green;
 // $topbar-dropdown-label-text-transform: uppercase;
 // $topbar-dropdown-label-font-weight: bold;
 // $topbar-dropdown-label-font-size: rem-calc(10);
-// $topbar-dropdown-label-bg: #333;
+ $topbar-dropdown-label-bg: $green;
 
 // Top menu icon styles
 // $topbar-menu-link-transform: uppercase;
 // $topbar-menu-link-font-size: rem-calc(13);
 // $topbar-menu-link-weight: bold;
 // $topbar-menu-link-color: #fff;
-// $topbar-menu-icon-color: #fff;
+ //$topbar-menu-icon-color: $topbar-bg-color;
 // $topbar-menu-link-color-toggled: #888;
 // $topbar-menu-icon-color-toggled: #888;
 
@@ -1249,19 +1254,20 @@ $topbar-bg: $topbar-bg-color;
   margin-top: 15px;
   padding-top: 0px;
   padding-bottom: 15px;
-  background-color:$green;
-  color: #229944;
+  background-color:#fff;
+  color: $brown;
   text-align: center;
 }
 
 #footer a {
-  color: #339999;
+  color: $pink;
   text-decoration: none;
 }
 
 #footer a:hover {
-  color: #339999;
+  color: $pink;
   text-decoration: underline;
+  text-decoration: bold;
 }
 
 #copy {
@@ -1343,6 +1349,14 @@ label {
 
 #row {
 	float: center;
+}
+
+h2 {
+	text-align: center;
+}
+#contact {
+	margin-left: 33%;
+	margin-right: 33%;
 }
 
 

@@ -1,6 +1,6 @@
 
-    <%= f.input :assignment_id, collection: get_assignment_options, input_html: {class: "avg"} %>
+    <%= f.input :assignment_id, collection: get_assignment_options, label: "Employee", input_html: {class: "avg"} %>
     <%= f.input :date,  as: :string, :input_html => {:class => "avg datepicker"} %>
 
-    <%= f.input :start_time, as: :time, input_html: {class: "avg"} %>
+    <%= f.input :start_time, as: :time, :minute_step => 15, input_html: {class: "avg"} %>
 

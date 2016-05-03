@@ -21,6 +21,7 @@ class ShiftsController < ApplicationController
 	def new
 		@shift = Shift.new
 		@shift.shift_jobs.build
+		@shift.date = humanize_date @shift.date
 	end
 
 	def edit
@@ -33,7 +34,7 @@ class ShiftsController < ApplicationController
 		@shift = Shift.new(shift_params)
 		respond_to do |format|
 			if @shift.save
-				format.html {redirect_to shift_path(@shift), notice: "Sucessfully created new shift on #{@shift.date} for #{@shift.assignment.store}."}
+				format.html {redirect_to new_shift_path, notice: "Sucessfully created new shift for #{@shift.assignment.employee.name}  on #{@shift.date} at #{@shift.assignment.store.name}."}
 				format.json { render action: 'show', status: :created, location: @shift }
 				@jobs = @shift.jobs
 				@assignment = @shift.assignment
@@ -81,12 +82,14 @@ class ShiftsController < ApplicationController
 
 	def start_now
 		@shift = current_user.employee.current_assignment.shifts.upcoming.for_next_days(0).first
-		#@shift.start_now
+		@shift.start_now
+		redirect_to home_path, notice: "Clocked IN at #{@shift.start_time.strftime("%r")}"
 	end
 
 	def end_now
 		@shift = current_user.employee.current_assignment.shifts.upcoming.for_next_days(0).first
-		#@shift.end_now
+		@shift.end_now
+		redirect_to home_path, alert: "Clocked OUT at #{@shift.end_time.strftime("%r")}"
 	end
 
 	def complete
