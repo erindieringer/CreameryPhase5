@@ -3,7 +3,7 @@
     <%= render partial: "shift_details" %>
   </div>
     <div class="small-5 columns">
-    <%= render partial: "job_list"%>
+    <%= render partial: "job_list" unless @shift.date >=  Date.current%>
     <%= render partial: "assignment_details" %>
   </div>
 

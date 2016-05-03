@@ -1,14 +1,22 @@
- <% @incomplete_shifts = Shift.chronological.for_store(current_user.employee.current_assignment.store_id).past.incomplete.paginate(page: params[:page]).per_page(5) %>
-<div id="shifts_to_complete"
+<% if current_user.employee.role == "manager" %> 
+   <% @incomplete_shifts = Shift.chronological.for_store(current_user.employee.current_assignment.store_id).past.incomplete.paginate(page: params[:page]).per_page(5) %>
+<%end%>
+
+<div id="shifts_to_complete" >
   <% if @incomplete_shifts.nil? || @incomplete_shifts.empty? %>
     <p><em>There are no incomplete shifts at this time.</em></p>
   <% else %>
-    <h3> Shifts to be completed</h3>
-    <table class="table table-striped">
+  <h2> Shifts to be completed   
+      
+      <%= link_to complete_path(@incomplete_shifts.first),class: 'button radius' do %>
+          &nbsp;<%= "Quick Complete Shifts" %>
+      <% end %> </h2>
+    <table class="table table-striped", id="shifts_to_complete",  width= "600">
       <thead>
         <tr>
           <th>Employee</th>
           <th>Date</th>
+          <th>&nbsp;</th>
           <th>&nbsp;</th>
         </tr>
       </thead>
@@ -17,12 +25,15 @@
             <tr>
               <td><%= link_to shift.assignment.employee.name, employee_path(shift.assignment.employee) %></td>
               <td><%= shift.date.strftime("%m/%d/%y") %></td>
-              
+              <td> <%= link_to(shift_path(shift), class: 'button tiny radius') do %>
+                &nbsp;View&nbsp;
+              <% end %></td>
               <td>
               <%= link_to(new_shift_job_path(shift_id: @shift), id: 'new_shiftjob_link', class: 'button tiny radius warning', remote: true) do %>
                   Add Job
                 <% end %>
               </td>
+
             </tr>
         <% end %>
       </tbody>

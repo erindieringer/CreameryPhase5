@@ -4,37 +4,40 @@
     <%if !current_user.employee.current_assignment.shifts.upcoming.for_next_days(0).empty? %>
         <%= render partial: "clock_in" %>
     <% end %>
-    <h2> Hi <%=current_user.employee.first_name %>! </h2>
-    <%= render partial: "home/shifts_to_complete" %>
-    <% unless @incomplete_shifts.nil? %>
-      <%= link_to complete_path(@incomplete_shifts.first),class: 'button radius' do %>
-          &nbsp;<%= "Quick Complete Shifts" %>
-      <% end %>
-  </div>
+    </div>
+</div> 
 
+<div class="row">
+  <div class="small-12 columns">    
+    <%= render partial: "home/shifts_to_complete" %>
+  </div>
 </div>
 
 <div class="row">
-  <div class="small-6 columns">
-    <!-- primary partial gets displayed here in main div -->
-
-    <% end %>
-  <%= render partial: "home/todays_flavors" %>
-    <%= link_to employee_path(current_user.employee_id),class: 'button radius' do %>
-        &nbsp;<%= "View My Personal Information" %>
-    <% end %>
-
-    <!-- sometimes we want another partial below -->
+  <div class="small-8 columns">
+    <%= render partial: "home/todays_shifts" %>
 
   </div>
 
-  <div class="small-6 columns">
-    <%= render partial: "home/todays_shifts" %>
-    <%= link_to new_shift_path,class: 'button radius' do %>
-        &nbsp;<%= "Quick Add Shifts" %>
-    <% end %>
-    <%= render partial: "home/upcoming_shifts" %>
-    <%= render partial: "home/hours_worked" %>
-
+  <div class="small-4 columns">
+    <br/>
+    <br/>
+    <br/>
+    <%= render partial: "home/todays_flavors" %>
   </div>
 </div>
+
+<div class="row">
+  <div class="small-8 columns">    
+    <%= render partial: "home/upcoming_shifts" %>
+
+  </div>
+  <div class="small-4 columns">  
+    <%= render partial: "home/hours_worked" %>
+       <%= link_to employee_path(current_user.employee_id),class: 'button radius' do %>
+          &nbsp;<%= "View My Personal Information" %>
+      <% end %>
+  </div>
+</div>
+
+

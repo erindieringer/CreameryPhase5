@@ -1,8 +1,10 @@
 <% if @todays_shifts.empty? %>
   <p><em>There are no scheduled shifts for today.</em></p>
 <% else %>
-  <h3>Today's Shifts for <%= current_user.employee.current_assignment.store.name %></h3>
-  <table class="table table-striped">
+  <h3>Today's Shifts for <b><%= current_user.employee.current_assignment.store.name %> </b> <%= link_to new_shift_path,class: 'button radius' do %>
+        &nbsp;<%= "Quick Add Shifts" %>
+    <% end %></h3>
+  <table class="table table-striped", width= "550">
     <thead>
       <tr>
         <th>Employee</th>
