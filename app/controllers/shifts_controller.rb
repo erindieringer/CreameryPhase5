@@ -1,5 +1,5 @@
 class ShiftsController < ApplicationController
-	before_action :set_shift, only: [:show, :edit, :update, :destroy]
+	before_action :set_shift, only: [:show, :edit, :update, :destroy]#, :show_start_now, :show_end_now]
 	before_action :check_login
   	authorize_resource
 
@@ -85,11 +85,19 @@ class ShiftsController < ApplicationController
 		@shift.start_now
 		redirect_to home_path, notice: "Clocked IN at #{@shift.start_time.strftime("%r")}"
 	end
+	def show_start_now
+		@shift.start_now
+		redirect_to shift_path(@shift), notice: "Clocked IN at #{@shift.start_time.strftime("%r")}"
+	end
 
 	def end_now
 		@shift = current_user.employee.current_assignment.shifts.upcoming.for_next_days(0).first
 		@shift.end_now
 		redirect_to home_path, alert: "Clocked OUT at #{@shift.end_time.strftime("%r")}"
+	end
+	def show_end_now
+		@shift.end_now
+		redirect_to shift_path(@shift), alert: "Clocked OUT at #{@shift.end_time.strftime("%r")}"
 	end
 
 	def complete

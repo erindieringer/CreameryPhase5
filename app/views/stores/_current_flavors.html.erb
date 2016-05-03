@@ -1,8 +1,10 @@
- <div id ="current_flavors2" >
+<% @current_flavors = @store.store_flavors.all unless @store.nil? %>
+ <div id="current_flavors2" >
  <%unless @store.nil? || @store.active == false%>
+ <%# @current_flavors = @store.store_flavors.all %>
 	<% unless @current_flavors.empty? %>
 	  <div class="panel callout radius">
-	    <h3>Current Flavors for <%= @store.name %> </h3>
+	    <h3>Current Flavors for <%#= @store.name %> </h3>
 	    <ul>
 	      <% @current_flavors.each do |flavor| %>
 	      	<% if flavor.flavor.active == true &%>

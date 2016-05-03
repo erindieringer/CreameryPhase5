@@ -7,7 +7,8 @@ class StoreFlavorsController < ApplicationController
 	def show
 		@store_flavors= StoreFlavor.all
 		@current_flavors = StoreFlavor.all
-		@incomplete_shifts = Shift.incomplete.all
+		@current_store_flavors = StoreFlavor.all
+		#@incomplete_shifts = Shift.incomplete.all
 	end
 
 	def new
@@ -25,9 +26,9 @@ class StoreFlavorsController < ApplicationController
 	      		format.json { render action: 'show', status: :created, location: @store_flavor }
 	      		@flavor = @store_flavor.flavor
 	      		@store_flavors = @flavor.store_flavors
-	      		@current_flavors = @store_flavor.flavor.store_flavors
-	      		@incomplete_shifts = Home.incomplete_shifts#Shifts.incomplete.for_store(urrent_user.employee.current_assignment.store)
-
+	      		@current_flavors = @store_flavor.store.store_flavors
+	      		@current_store_flavors = @store_flavor.store.store_flavors
+	      		#@incomplete_shifts = Home.incomplete_shifts#Shifts.incomplete.for_store(urrent_user.employee.current_assignment.store)
 	      		format.js
 	      	else
 	      		format.html {render action: 'new'}

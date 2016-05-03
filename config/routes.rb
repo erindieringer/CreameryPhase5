@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get 'complete' => 'shifts#complete', as: :complete
   get 'start_now' => 'shifts#start_now', as: :start_now
   get 'end_now' => 'shifts#end_now', as: :end_now
+  get 'show_start_now' => 'shifts#show_start_now', as: :show_start_now
+  get 'show_end_now' => 'shifts#show_end_now', as: :show_end_now
   # Set the root url
   root :to => 'home#home'  
   
