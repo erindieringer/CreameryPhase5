@@ -11,6 +11,7 @@
 	    <%= link_to 'Cancel', flavor_path(params[:flavor_id]), class: 'button tiny radius alert' %>
 	  </div>
 	<% end %>
+
 <% elsif logged_in? && current_user.employee.role == "manager" %>
 	<%= simple_form_for @store_flavor, html: { :class => 'form-horizontal' }, remote: true do |f| %>
 	  

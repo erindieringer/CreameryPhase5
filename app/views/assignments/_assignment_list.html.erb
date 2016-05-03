@@ -41,7 +41,7 @@
             </td>
             <% if logged_in? && current_user.employee.role == "admin" && state == 'current'%>
               <td>
-                <%= link_to(image_tag("edit_dg.gif"), edit_assignment_path(assignment))  %>
+                <%= link_to(image_tag("edit_dg.gif", :size => "20x20"), edit_assignment_path(assignment))  %>
               </td>
             <%end%>
           </tr>

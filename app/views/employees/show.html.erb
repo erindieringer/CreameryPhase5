@@ -4,11 +4,12 @@
 	    <%= render partial: "employee_details" %>
 	    <br/>
 	    <%= render partial: "assignment_history" unless @assignments.empty?%>
+	    <br/>
 	  </div>
+	  
 	  <div class="small-6 columns">
 	    <%= render partial: "upcoming_shifts"  unless @employee.nil? || @employee.current_assignment.nil? %>
 	    <%= render partial: "past_shifts"  unless @employee.nil? || @employee.current_assignment.nil? %>
-
 	  </div>
 	</div>
 <% unless current_user.employee.role == "employee" %>

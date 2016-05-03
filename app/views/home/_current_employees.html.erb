@@ -4,6 +4,7 @@
 		<tr>
 			<th> Name </th>
 			<th> Current Store </th>
+			<th> Upcoming Shifts </th>
 		</tr>
 	</thead>
 	<tbody>
@@ -16,7 +17,12 @@
 					<%else%>
 						<td> Not currently assigned </td>
 					<%end%>
+					<% if employee.current_assignment.nil? || employee.current_assignment.shifts.upcoming.empty?%>
+						<td> 0 </td>
+					<%else%>
+							<td> <%= Shift.upcoming.for_employee(employee).count %> </td>
 					</tr>
+					<%end%>
 				<%end%>
 	</tbody>
 

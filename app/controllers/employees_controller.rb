@@ -43,8 +43,8 @@ class EmployeesController < ApplicationController
       if @employee.save
         format.html {redirect_to employee_path(@employee), notice: "Successfully created #{@employee.proper_name}."}
         format.json { render action: 'show', status: :created, location: @employee }
-        @upcoming_shifts = @employee.current_assignment.shifts.upcoming.chronological#.paginate(page: params[:page]).per_page(5)
-        @past_shifts = @employee.current_assignment.shifts.past.chronological.paginate(page: params[:page]).per_page(5)
+        @upcoming_shifts = @employee.current_assignment.shifts.upcoming.chronological unless @employee.current_assignment.nil?
+        @past_shifts = @employee.current_assignment.shifts.past.chronological.paginate(page: params[:page]).per_page(5) unless @employee.current_assignment.nil?
         format.js
       else
         format.html {render action: 'new'}

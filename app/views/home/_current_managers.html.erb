@@ -4,6 +4,7 @@
 		<tr>
 			<th> Name </th>
 			<th> Current Store </th>
+			<th align="center"> Incomplete Task Count </th>
 		</tr>
 	</thead>
 	<tbody>
@@ -17,6 +18,7 @@
 					<%else%>
 						<td> Not Assigned </td>
 					<%end%>
+					<td align="center"> <%= Shift.incomplete.for_store(employee.current_assignment.store).count %> </td>
 				</tr>
 				<%end%>
 
