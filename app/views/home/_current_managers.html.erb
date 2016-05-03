@@ -1,4 +1,4 @@
-<h3> Active Employees </h3>
+<h3> Active Managers </h3>
 <table>
 	<thead>
 		<tr>
@@ -7,19 +7,22 @@
 		</tr>
 	</thead>
 	<tbody>
-				
-				<% @active_employees.regulars.alphabetical.each do |employee| %>
-					<tr>
+
+
+				<% @active_managers.each do |employee| %>
+				<tr>
 					<td> <%= link_to employee.name, employee_path(employee) %> </td>
 					<% if !employee.current_assignment.nil? %>
 						<td> <%= link_to employee.current_assignment.store.name, store_path(employee.current_assignment.store) %> </td>
 					<%else%>
-						<td> Not currently assigned </td>
+						<td> Not Assigned </td>
 					<%end%>
-					</tr>
+				</tr>
 				<%end%>
+
+
 	</tbody>
 
 </table>
 
-<%= will_paginate @active_employees, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+<%= will_paginate @active_managers, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>

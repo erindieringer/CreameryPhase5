@@ -20,7 +20,12 @@
             <tr>
               <td><%= link_to employee.name, employee_path(employee) %></td>
               <td><%= number_to_phone employee.phone unless employee.phone.nil?  %></td>
-              <td><%= link_to employee.current_assignment.store.name, store_path(employee.current_assignment.store) unless employee.current_assignment.nil? %></td>
+              <% if !employee.current_assignment.nil? %>
+                <td><%= link_to employee.current_assignment.store.name, store_path(employee.current_assignment.store) %></td>
+              <%else%>
+                <td> Not Assigned </td>
+              <%end%>
+
               <td><%= employee.role.capitalize %></td>
               <% if logged_in? && current_user.employee.role == "admin"%>
                 <td>

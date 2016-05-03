@@ -6,8 +6,8 @@
 	    <%= render partial: "assignment_history" unless @assignments.empty?%>
 	  </div>
 	  <div class="small-6 columns">
-	    <%= render partial: "upcoming_shifts"  unless @employee.nil? %>
-	    <%= render partial: "past_shifts"  unless @employee.nil? %>
+	    <%= render partial: "upcoming_shifts"  unless @employee.nil? || @employee.current_assignment.nil? %>
+	    <%= render partial: "past_shifts"  unless @employee.nil? || @employee.current_assignment.nil? %>
 
 	  </div>
 	</div>

@@ -7,13 +7,14 @@
  <div class="row">
   <div class="small-6 columns">
   		<%= render partial: "store_list" %>
-  		<%= render partial: "current_employees", locals: {role: "manager"} %>
+  		<%= render partial: "current_employees" %>
   	</div>
  
 
   <div class="small-6 columns">
   	<%= render partial: "daily_shifts" %>
-  	<%= render partial: "current_employees", locals: {role: "employee"} %>
+  	<%= render partial: "current_managers"%>
+
 
   </div>
  </div>

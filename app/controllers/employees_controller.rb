@@ -17,7 +17,7 @@ class EmployeesController < ApplicationController
     # get the assignment history for this employee
     @assignments = @employee.assignments.chronological.paginate(page: params[:page]).per_page(5)
     # get upcoming shifts for this employee (later)
-    @upcoming_shifts = @employee.current_assignment.shifts.upcoming.chronological#.paginate(page: params[:page]).per_page(5) unless @employee.current_assignment.nil?
+    @upcoming_shifts = @employee.current_assignment.shifts.upcoming.chronological unless @employee.current_assignment.nil?
     @past_shifts = @employee.current_assignment.shifts.past.chronological.paginate(page: params[:page]).per_page(5) unless @employee.current_assignment.nil?
     @user = @employee.user  
   end
