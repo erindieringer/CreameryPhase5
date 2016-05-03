@@ -27,9 +27,11 @@
         </td>
         <td class="centered"><%= assignment.pay_level %></td>
         <td> 
-          <%= link_to(assignment_path(assignment), class: 'button tiny radius') do %>
+          <% if logged_in? && current_user.employee.role == "admin" || (current_user.employee.role == "manager" && assignment.store_id ==  current_user.employee.current_assignment.store_id) %>
+              <%= link_to(assignment_path(assignment), class: 'button tiny radius') do %>
                   &nbsp;View&nbsp;
                 <% end %>
+          <% end %>
         </td>
       </tr>
     <% end %>
