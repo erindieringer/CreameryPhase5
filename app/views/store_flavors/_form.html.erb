@@ -1,0 +1,11 @@
+<h3> Add Flavor </h3>	
+	<%= simple_form_for @store_flavor, html: { :class => 'form-horizontal' } do |f| %>
+	  
+	  <%= f.input :store_id, collection: Store.active.all, input_html: {class: "avg"} %>
+	  <%= f.input :flavor_id, label: "Flavor", collection: Flavor.active.all, input_html: {class: "avg"} %>
+
+	  <div class="form-actions">
+	    <%= f.submit nil, class: 'button tiny radius' %>
+	    <%= link_to 'Cancel', flavors_path, class: 'button tiny radius alert' %>
+	   </div>
+	<% end %>

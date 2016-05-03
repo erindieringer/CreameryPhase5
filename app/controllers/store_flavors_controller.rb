@@ -8,7 +8,6 @@ class StoreFlavorsController < ApplicationController
 		@store_flavors= StoreFlavor.all
 		@current_flavors = StoreFlavor.all
 		@current_store_flavors = StoreFlavor.all
-		#@incomplete_shifts = Shift.incomplete.all
 	end
 
 	def new
@@ -28,7 +27,6 @@ class StoreFlavorsController < ApplicationController
 	      		@store_flavors = @flavor.store_flavors
 	      		@current_flavors = @store_flavor.store.store_flavors
 	      		@current_store_flavors = @store_flavor.store.store_flavors
-	      		#@incomplete_shifts = Home.incomplete_shifts#Shifts.incomplete.for_store(urrent_user.employee.current_assignment.store)
 	      		format.js
 	      	else
 	      		format.html {render action: 'new'}

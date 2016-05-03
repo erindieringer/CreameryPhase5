@@ -48,6 +48,7 @@ class FlavorsController < ApplicationController
 	end
 
 	def destroy
+		@flavor.store_flavors.destroy
 		@flavor.destroy
 		respond_to do |format|
 			format.html {redirect_to flavors_path, notice: "Sucessfully destroyed #{@flavor.name} from the AMC system."}

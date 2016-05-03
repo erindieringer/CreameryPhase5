@@ -70,6 +70,7 @@ class ShiftsController < ApplicationController
 	end
 
 	def destroy
+		@shift.shift_jobs.destroy
 		@shift.destroy
 		respond_to do |format|
 			format.html {redirect_to shifts_path, notice: "Sucessfully destroyed shift for #{@shift.assignment.employee.name} on #{@shift.date} at #{@shift.assignment.store.name} from the AMC system."}

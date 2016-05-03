@@ -17,6 +17,7 @@ class HomeController < ApplicationController
     @active_admins = Employee.active.admins.all.paginate(page: params[:page]).per_page(5)
 
 
+
   end
 
   def about
