@@ -22,7 +22,7 @@ class StoreFlavorsController < ApplicationController
 		@store_flavor = StoreFlavor.new(store_flavor_params)
 		respond_to do |format|	
 			if @store_flavor.save
-	      		format.html {redirect_to store_flavor_path, notice: "New store flavor created!"}
+	      		format.html {redirect_to store_path(@store_flavor.store), notice: "New store flavor created!"}
 	      		format.json { render action: 'show', status: :created, location: @store_flavor }
 	      		@flavor = @store_flavor.flavor
 	      		@store_flavors = @flavor.store_flavors
