@@ -87,7 +87,7 @@
 
           <ul class="right">
             <li class="has-dropdown">
-            <%= link_to "Welcome, #{current_user.employee.first_name}", user_path(current_user) %>
+            <%=  link_to "Welcome, #{current_user.employee.first_name}", employee_path(current_user.employee) %>
             <ul class="dropdown">
               <li><%= link_to "Edit Profile", edit_employee_path(current_user.employee_id) %></li>
               <li><%= link_to "Logout", logout_path %></li>
