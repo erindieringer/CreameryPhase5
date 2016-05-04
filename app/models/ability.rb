@@ -18,6 +18,10 @@ class Ability
         employees.current_assignment.store_id == managed_store
       end
 
+      can :update, Employee do |e|
+        e.id == user.employee.id
+      end
+
       can :read, Assignment do |assign|
         managed_store = user.employee.current_assignment.store_id
         assign.store_id == managed_store
