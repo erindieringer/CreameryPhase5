@@ -322,7 +322,7 @@ $pink: #F294B6;
 // $button-sml: rem-calc(14);
 // $button-med: rem-calc(16);
 // $button-lrg: rem-calc(18);
-
+	
 // We use this to control the display property.
 // $button-display: inline-block;
 // $button-margin-bottom: rem-calc(20);
@@ -1372,9 +1372,9 @@ h2 {
 	margin-right:15%;
 }
 
-table.clock_in {
+table.clock {
 	border: none;
-	background-color: $green;
+	background-color: #FAF8B6;
 }
 
 @import 'foundation';
