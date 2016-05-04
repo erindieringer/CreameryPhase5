@@ -54,5 +54,18 @@ class UserTest < ActiveSupport::TestCase
       assert freeman_user.destroyed?
     end
 
+    should "have an appropriate role" do
+      assert_equal true, @alex_user.role?(:admin)
+    end
+
+    should "ensure employee active in system" do 
+      assert_equal true, @alex_user.employee.valid?
+    end
+
+    should "have working class method for authenication" do 
+      assert User.authenticate("alex@example.com", "secret")
+    end
+
+
   end
 end
