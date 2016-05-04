@@ -119,5 +119,14 @@ class StoreTest < ActiveSupport::TestCase
       @cmu.reload
       deny @cmu.active
     end
+
+    should "have a method to make a map link" do 
+      assert_nil @cmu.latitude
+      assert_nil @cmu.longitude
+      @cmu.create_map_link
+      assert_not_nil @cmu.latitude
+      assert_not_nil @cmu.longitude
+      assert_equal "http://maps.google.com/maps/api/staticmap?center= 40.4434658,-79.9434567&zoom=12&size=550x550&maptype=roadmap&markers=color:red%7Ccolor:red%7Clabel:1%7C40.4434658,-79.9434567&sensor=false" , @cmu.create_map_link
+    end
   end
 end
