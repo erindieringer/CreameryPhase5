@@ -1,22 +1,21 @@
 
     <%= simple_nested_form_for @shift, :html => { :class => 'form-horizontal' } do |shift_form| %>
         <fieldset>
-              <legend><%= controller.action_name.capitalize %> Shift</legend>
+              <legend><%= controller.action_name.capitalize %> Shift for <%= @shift.assignment.employee.name %> </legend>
                       <%= render :partial => "edit_shift_fields", :locals => { :f => shift_form } %> 
 
-            <% if @shift.date < Date.current  %> 
-              <div id= "shift_job_form" >
-                <%= shift_form.simple_fields_for :shift_jobs do |shift_job_form| %>
-                  <%= shift_job_form.link_to_remove("x") %>
-                  <%= render :partial => "shiftjob_form", :locals => { :f => shift_job_form } %>
-                <% end %>
-              <p>
-                <%= shift_form.link_to_add("Add Job", :shift_jobs, :class => 'button tiny') %>
-               </p>
+        
+              <% unless Shift.upcoming.all.include?(@shift) %>
+                <div id= "shift_job_form" >
+                  <%= shift_form.simple_fields_for :shift_jobs do |shift_job_form| %>
+                    <%= shift_job_form.link_to_remove("x") %>
+                    <%= render :partial => "shiftjob_form", :locals => { :f => shift_job_form } %>
+                  <% end %>
+                <p>
+                  <%= shift_form.link_to_add("Add Job", :shift_jobs, :class => 'button tiny') %>
+                 </p>
 
-
-          
-            <% end %>
+            <%end%>
 
             </div>
 

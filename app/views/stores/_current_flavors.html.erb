@@ -24,7 +24,7 @@
 	  </div>
 	  <% if logged_in? %>
 	  	<% if current_user.employee.role == "manager" && @store.id == current_user.employee.current_assignment.store_id || current_user.employee.role == "admin"  %>
-	  		<%= link_to new_store_flavor_path,class: 'button radius' do %>
+	  		<%= link_to new_store_flavor_path, class: 'button radius' do %>
           &nbsp;<%= "Add Flavor" %>
 		<% end %>
 		<% end %>

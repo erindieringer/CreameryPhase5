@@ -86,24 +86,18 @@ class ShiftsController < ApplicationController
 		@shift.start_now
 		redirect_to home_path, notice: "Clocked IN at #{@shift.start_time.strftime("%r")}"
 	end
-	def show_start_now
-		@shift.start_now
-		redirect_to shift_path(@shift), notice: "Clocked IN at #{@shift.start_time.strftime("%r")}"
-	end
 
 	def end_now
 		@shift = current_user.employee.current_assignment.shifts.upcoming.for_next_days(0).first
 		@shift.end_now
 		redirect_to home_path, alert: "Clocked OUT at #{@shift.end_time.strftime("%r")}"
 	end
-	def show_end_now
-		@shift.end_now
-		redirect_to shift_path(@shift), alert: "Clocked OUT at #{@shift.end_time.strftime("%r")}"
-	end
+
 
 	def complete
 		@shift = Shift.incomplete.for_store(current_user.employee.current_assignment.store.id).first
 		@incomplete_shifts = Shift.for_store(current_user.employee.current_assignment.store_id).past.incomplete
+
 	end
 
 	

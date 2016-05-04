@@ -1,0 +1,31 @@
+<h3> Add Flavor </h3>	
+    <%= simple_nested_form_for :shift_id, :html => { :class => 'form-horizontal' } do |shift_form| %>
+        <fieldset>
+              <legend><%= controller.action_name.capitalize %> Shift</legend>
+                      <%= render :partial => "shifts/edit_shift_fields", :locals => { :f => shift_form } %> 
+
+
+              <div id= "shift_job_form" >
+                <%= shift_form.simple_fields_for :shift_jobs do |shift_job_form| %>
+                  <%= shift_job_form.link_to_remove("x") %>
+                  <%= render :partial => "shifts/shiftjob_form", :locals => { :f => shift_job_form } %>
+                <% end %>
+              <p>
+                <%= shift_form.link_to_add("Add Job", :shift_jobs, :class => 'button tiny') %>
+               </p>
+
+
+          
+
+            </div>
+
+        <div class="form-actions">
+          <%= shift_form.submit nil, :class => 'button radius' %>
+        <% if current_user.employee.role == "admin"  %>
+          <%= link_to 'Cancel', shifts_path, :class => 'button alert radius' %>
+        <% else %>
+          <%= link_to 'Cancel', shifts_path, :class => 'button alert radius' %>
+        <% end %>
+        </div>
+      </fieldset>
+    <%end %> 

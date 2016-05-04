@@ -8,8 +8,8 @@
   <% else %>
   <h2> Shifts to be completed   
       
-      <%= link_to complete_path(@incomplete_shifts.first),class: 'button radius' do %>
-          &nbsp;<%= "Quick Complete Shifts" %>
+      <%= link_to complete_path,class: 'button radius' do %>
+          &nbsp;<%= "Quick Complete All Shifts" %>
       <% end %> </h2>
     <table class="table table-striped", id="shifts_to_complete",  width= "600">
       <thead>
@@ -28,10 +28,9 @@
               <td> <%= link_to(shift_path(shift), class: 'button tiny radius') do %>
                 &nbsp;View&nbsp;
               <% end %></td>
-              <td>
-              <%= link_to(new_shift_job_path(shift_id: @shift), id: 'new_shiftjob_link', class: 'button tiny radius warning', remote: true) do %>
-                  Add Job
-                <% end %>
+              <td> <%= link_to(edit_shift_path(shift), class: 'button tiny radius warning') do %>
+                &nbsp;Complete&nbsp;
+              <% end %></td>
               </td>
 
             </tr>

@@ -7,7 +7,7 @@ class Shift < ActiveRecord::Base
   has_one :store, through: :assignment
 
   # Validations
-  validates_date :date, on_or_after: lambda { :assignment_starts }, on_or_before_message: "must be on or after the start of the assignment"
+  validates_date :date, on_or_after: lambda { :assignment_starts }, on: :create, on_or_before_message: "must be on or after the start of the assignment"
   validates_time :start_time
   validates_time :end_time, after: :start_time, on: :create, allow_blank: true
   validate :assignment_must_be_current
@@ -15,7 +15,7 @@ class Shift < ActiveRecord::Base
   #before_validation :set_date_from_string
   
 
-  accepts_nested_attributes_for :shift_jobs#, reject_if: lambda { |job| job[:job_id].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :shift_jobs, reject_if: lambda { |shift| shift[:shift_id].blank? }, allow_destroy: true
 
   # Scopes
   scope :chronological, -> { order(:date, :start_time) }
