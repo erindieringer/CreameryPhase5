@@ -4,7 +4,10 @@
 
     <%= f.input :store_id, :collection => Store.active.alphabetical, :include_blank => true, input_html: {class: "avg"} %>
     <%= f.input :employee_id, :collection => Employee.active.alphabetical, :include_blank => true, input_html: {class: "avg"} %>
-    <%= f.input :start_date, :label => "Start Date", as: :string, :input_html => {:class => "avg datepicker"} %>
+    <% if controller.action_name == "new" %>
+        <%#= f.input :start_date, :label => "Start Date", as: :string, :input_html => {:class => "avg datepicker"} %>
+        <%= f.input :start_date, as: :hidden, input_html: { value: Date.current } %>
+    <%end%>
   
     <%# Only show the end_date on 'edit', not 'new' %>
     <% if controller.action_name == "edit" %>

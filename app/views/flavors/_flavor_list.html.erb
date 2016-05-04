@@ -14,7 +14,11 @@
     <tbody>
       <% flavors.each do |flavor| %>
         <tr>
-          <td><%= link_to flavor.name, flavor_path(flavor) %></td>
+          <% if logged_in? && current_user.employee.role == "admin" ||current_user.employee.role == "manager" %>
+              <td><%= link_to flavor.name, flavor_path(flavor) %></td>
+          <% else %>
+              <td><%= flavor.name %></td>
+          <%end%>
           <% if logged_in? && current_user.employee.role == "admin"%>
             <td>
               <%= link_to(image_tag("edit_dg.gif"), edit_flavor_path(flavor))  %>

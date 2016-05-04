@@ -26,6 +26,6 @@
       <% end %>
     </tbody>
   </table>
-  <%= will_paginate @todays_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+  <%= will_paginate @todays_shifts, :param_name => 'shifts_today', previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
 <% end %>
 <p>&nbsp;</p>

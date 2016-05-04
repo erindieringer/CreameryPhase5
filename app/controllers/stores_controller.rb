@@ -10,7 +10,7 @@ class StoresController < ApplicationController
   end
 
   def show
-    @current_assignments = @store.assignments.current.paginate(page: params[:page]).per_page(8)
+    @current_assignments = @store.assignments.current.paginate(page: params[:assigns]).per_page(8)
     @current_flavors = @store.store_flavors.all.paginate(page: params[:page]).per_page(10)
     @store_shifts = [] 
     @store.assignments.current.each do |assignment| 
@@ -20,7 +20,7 @@ class StoresController < ApplicationController
         end 
       end 
     end
-    @store_shifts = @store_shifts.sort.paginate(:page => params[:page], :per_page => 5)
+    @store_shifts = @store_shifts.sort.paginate(:page => params[:upcoming_shifts], :per_page => 5)
   end
 
   def new

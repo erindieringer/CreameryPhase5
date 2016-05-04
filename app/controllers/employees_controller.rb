@@ -8,17 +8,17 @@ class EmployeesController < ApplicationController
       @active_employees = Employee.active.alphabetical.to_a #.paginate(page: params[:page]).per_page(10) 
       @inactive_employees = Employee.inactive.alphabetical#.paginate(page: params[:page]).per_page(10)
     else
-      @active_employees = Employee.active.alphabetical.paginate(page: params[:page]).per_page(10) 
-      @inactive_employees = Employee.inactive.alphabetical.paginate(page: params[:page]).per_page(10)
+      @active_employees = Employee.active.alphabetical.paginate(page: params[:actives]).per_page(10) 
+      @inactive_employees = Employee.inactive.alphabetical.paginate(page: params[:inactives]).per_page(10)
     end
   end
 
   def show
     # get the assignment history for this employee
-    @assignments = @employee.assignments.chronological.paginate(page: params[:page]).per_page(5)
+    @assignments = @employee.assignments.chronological.paginate(page: params[:assignments]).per_page(5)
     # get upcoming shifts for this employee (later)
     @upcoming_shifts = @employee.current_assignment.shifts.upcoming.chronological unless @employee.current_assignment.nil?
-    @past_shifts = @employee.current_assignment.shifts.past.chronological.paginate(page: params[:page]).per_page(5) unless @employee.current_assignment.nil?
+    @past_shifts = @employee.current_assignment.shifts.past.chronological.paginate(page: params[:past]).per_page(5) unless @employee.current_assignment.nil?
     @user = @employee.user  
   end
 

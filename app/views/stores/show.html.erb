@@ -4,7 +4,7 @@
     <%= image_tag @store.create_map_link %>
   </div>
   <div class="small-5 columns">
-  	<%= render partial: "stores/current_flavors" %>
+  	<%= render partial: "stores/current_flavors"  unless @store.active == false%>
   	<% if logged_in? && (current_user.employee.role == "admin" || (current_user.employee.role == "manager" && current_user.employee.current_assignment.store_id == @store.id)) %>	
 	    <%= render partial: "assigned_employees" unless @current_assignments.empty?%>
 	    <%= render partial: "upcoming_shifts" %>

@@ -13,12 +13,14 @@
 				<% @active_managers.each do |employee| %>
 				<tr>
 					<td> <%= link_to employee.name, employee_path(employee) %> </td>
-					<% if !employee.current_assignment.nil? %>
+					<% if employee.current_assignment.nil? == false %>
 						<td> <%= link_to employee.current_assignment.store.name, store_path(employee.current_assignment.store) %> </td>
+						<td align="center"> <%= Shift.incomplete.for_store(employee.current_assignment.store).count %> </td>
 					<%else%>
 						<td> Not Assigned </td>
+						<td> n/a </td>
 					<%end%>
-					<td align="center"> <%= Shift.incomplete.for_store(employee.current_assignment.store).count %> </td>
+					
 				</tr>
 				<%end%>
 
@@ -27,4 +29,4 @@
 
 </table>
 
-<%= will_paginate @active_managers, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+<%= will_paginate @active_managers, :param_name => 'managers', previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>

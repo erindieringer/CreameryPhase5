@@ -28,7 +28,7 @@
         <% end %>
       </tbody>
     </table>
-     <%= will_paginate @past_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+     <%= will_paginate @past_shifts,:param_name => 'past', previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
 
   <% else%>
     <em>No Past Shifts</em>

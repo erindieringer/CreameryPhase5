@@ -40,7 +40,7 @@
   </table>
 
 <% if current_user.employee.role == "admin" %>
-  <%= will_paginate @active_employees, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+  <%= will_paginate @active_employees, :param_name => 'actives',:previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 <% end %>
 <% end %>
 <br></br>

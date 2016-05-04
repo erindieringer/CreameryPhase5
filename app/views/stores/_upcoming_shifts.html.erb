@@ -29,7 +29,7 @@
         <% end %>
       </tbody>
     </table>
-    <%= will_paginate @store_shifts, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+    <%= will_paginate @store_shifts, :param_name => 'upcoming_shifts',:previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 
 
   <%end%>

@@ -16,7 +16,7 @@
       <% end %>
     </tbody>
   </table>
-  <%= will_paginate @current_assignments, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+  <%= will_paginate @current_assignments, :param_name => 'assigns',:previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 
 <%end%>
 

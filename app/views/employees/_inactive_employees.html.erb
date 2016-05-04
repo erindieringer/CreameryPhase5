@@ -9,5 +9,5 @@
 	    </ul>
 	  </div>
 	<% end %>
-	<%= will_paginate @inactive_employees, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+	<%= will_paginate @inactive_employees,:param_name => 'inactives', :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 <% end %>
